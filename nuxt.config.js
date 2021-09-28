@@ -78,7 +78,8 @@ export default {
     strategies: {
       google: {
         client_id: "37049723745-3fkv14o86jki23ecrqhtueutqnu8nb9m.apps.googleusercontent.com",
-        responseType: 'token id_token'
+        responseType: 'token id_token',
+        redirect_uri: 'https://silly-khorana-e15180.netlify.app/login/'
       }
     },
     redirect: {
