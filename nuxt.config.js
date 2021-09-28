@@ -1,6 +1,7 @@
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
+  ssr: false,
   server: {
     port: 3044
   },

@@ -7,7 +7,7 @@
       <div class="card--inner">
 
         <div class="card--header">
-          <h2>Log in using Google.</h2>
+          <h2>Log in using Google. {{$auth.$state.loggedIn}} </h2>
         </div>
 
         <div class="card--content">

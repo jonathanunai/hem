@@ -6,7 +6,7 @@
         <main-header/>
         <icon-add/>
       </main>
-      <footer><a href="#" @click.prevent="logout">Logout</a></footer>
+      <footer><a href="#" @click.prevent="logout">Logout</a> {{$auth.$state.loggedIn}}</footer>
     </div>
   </div>
 </template>
