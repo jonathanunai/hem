@@ -29,6 +29,9 @@
 </template>
 <script>
 export default {
+    mounted() {
+     console.log(process.env.REDIRECT_URL)
+   },
    methods:{
      async login() {
          try {
