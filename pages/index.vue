@@ -20,7 +20,7 @@ export default {
              await this.$auth.logout()
              this.$toast.success('Successfully logged out')
          } catch(e){
-             this.$toast.global.my_error()
+             this.$toast.global.myerror()
              this.$toast.error('Error while exiting')
          }
      }

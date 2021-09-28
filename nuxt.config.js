@@ -79,7 +79,7 @@ export default {
     strategies: {
       google: {
         client_id: "37049723745-3fkv14o86jki23ecrqhtueutqnu8nb9m.apps.googleusercontent.com",
-        redirect_uri: process.env.REDIRECT_URL || 'https://silly-khorana-e15180.netlify.app/login'
+        redirect_uri: process.env.REDIRECT_URL || 'https://silly-khorana-e15180.netlify.app/login/'
       }
     },
     redirect: {
@@ -94,7 +94,7 @@ export default {
     duration: '2000',
     register: [ // Register custom toasts
       {
-        name: 'my-error',
+        name: 'myerror',
         message: 'Oops...Something went wrong',
         options: {
           type: 'error'

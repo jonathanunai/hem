@@ -39,7 +39,7 @@ export default {
              await this.$auth.loginWith('google')
              this.$toast.success('Successfully authenticated')
          } catch(e){
-             this.$toast.global.my_error()
+             this.$toast.global.myerror()
              this.$toast.error('Error while authenticating')
          }
      }
