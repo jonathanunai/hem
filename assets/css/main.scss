@@ -1,0 +1,90 @@
+::before, ::after {
+  text-decoration: inherit;
+  vertical-align: inherit;
+}
+*, ::before, ::after {
+  box-sizing: border-box;
+}
+body {
+  background-color: $colDarkGrey;
+  color: #e6e6e6;
+  font-size: 16px;
+  line-height: 1.5;
+  font-family: 'Open Sans',sans-serif;
+  letter-spacing: 0;
+  margin: 0;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.page-wrapper {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+.page-inner {
+    flex: 1 1 auto;
+}
+section {
+  padding-top: 50px;
+}
+.s-wrap {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1200px;
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 100%;
+}
+h3 {
+  font-size: 46px;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-weight: 600;
+}
+h4 {
+  font-size: 21px;
+  font-weight: 400;
+  margin: -5px 0 0;
+  padding: 0 0 10px;
+  text-align: center;
+}
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.mx-2 {
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+}
+.card {
+  background: #181818;
+  color: #e6e6e6;
+  margin-top: 28px;
+  overflow: hidden;
+  padding: 10px;
+  position: relative;
+  transition: padding .3s;
+  &--inner{
+    background: radial-gradient(circle at left,rgba(0,0,0,.6) 0,#000 25%);
+    padding: 20px;
+    position: relative;
+    z-index: 5;
+  }
+  &--header h2{
+    color: #e6e6e6;
+    font-weight: 400;
+    margin: 0 0 5px;
+    color: #dd625e;
+    }
+  &--content{
+    padding: 24px;
+  }
+  &--footer{
+    padding: 12px;
+    color: $colGrey;
+    font-size: 0.8rem;
+  }
+}

@@ -1,0 +1,8 @@
+@mixin with-border {
+  border: solid 2px black;
+  border-radius: 4px;
+}
+@mixin bold-text {
+  text-transform: uppercase;
+  font-weight: 900;
+}
