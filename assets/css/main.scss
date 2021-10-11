@@ -13,7 +13,7 @@ body {
   font-family: 'Open Sans',sans-serif;
   letter-spacing: 0;
   margin: 0;
-  min-height: 100%;
+  min-height:100vh;
   display: flex;
   flex-direction: column;
 }
@@ -21,9 +21,12 @@ body {
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
+  min-height:100vh;
+  align-items: center;
 }
 .page-inner {
     flex: 1 1 auto;
+    padding: 2rem 1rem;
 }
 section {
   padding-top: 50px;
@@ -67,6 +70,7 @@ h4 {
   padding: 10px;
   position: relative;
   transition: padding .3s;
+  max-width: 420px;
   &--inner{
     background: radial-gradient(circle at left,rgba(0,0,0,.6) 0,#000 25%);
     padding: 20px;
@@ -78,7 +82,8 @@ h4 {
     font-weight: 400;
     margin: 0 0 5px;
     color: #dd625e;
-    }
+    font-size: 1.2rem;
+  }
   &--content{
     padding: 24px;
   }
@@ -86,5 +91,6 @@ h4 {
     padding: 12px;
     color: $colGrey;
     font-size: 0.8rem;
+    text-align: right;
   }
 }

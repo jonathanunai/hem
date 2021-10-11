@@ -10,10 +10,10 @@ div {
     font-size: 27px;
     font-weight: 700;
     height: 40px;
-    left: -50px;
+    right: 10px;
     position: absolute;
     text-align: center;
-    top: 0;
+    top: -4px;
     width: 40px;
     &:hover {
       background: #bbb;

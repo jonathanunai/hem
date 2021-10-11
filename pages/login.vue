@@ -3,11 +3,11 @@
 
     <main-header/>
 
-    <div class="card">
+    <div v-if="!loggingIn" class="card">
       <div class="card--inner">
 
         <div class="card--header">
-          <h2>Log in using Google. {{$auth.$state.loggedIn}} </h2>
+          <h2>Log in using your Google account.</h2>
         </div>
 
         <div class="card--content">
@@ -29,11 +29,17 @@
 </template>
 <script>
 export default {
+  data() {
+    return {
+      loggingIn: false
+    }
+  },
     mounted() {
      console.log(process.env.REDIRECT_URL)
    },
    methods:{
      async login() {
+       this.loggingIn = true
          try {
              this.$toast.show('Logging in...')
              await this.$auth.loginWith('google')
