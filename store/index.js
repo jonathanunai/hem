@@ -16,8 +16,14 @@ export const mutations = {
   addItem(state, payload) {
     state.shoppingList.push(payload)
   },
-  crossout(state, index) {
-    state.shoppingList[index].state = state.shoppingList[index].state === "crossed" ? "order" : "crossed"
+  clearList(state) {
+    state.shoppingList.every((el) => (el.state = 'inactive'))
+  },
+  crossout(state, item) {
+    const ind = state.shoppingList.findIndex((obj) => obj.item === item)
+    if (ind)
+      state.shoppingList[ind].state =
+        state.shoppingList[ind].state === 'crossed' ? 'order' : 'crossed'
   },
 }
 
@@ -40,14 +46,18 @@ export const actions = {
   ADD_ITEM({ commit }, payload) {
     commit('addItem', payload)
   },
-  async CROSSOUT({ commit }, index) {
-    commit('crossout', index)
-    console.log(this.state.team)
-
+  async CLEAR_LIST({ commit }) {
+    commit('clearList')
     const data = doc(db, this.state.team, 'data')
     await updateDoc(data, {
       shoppingList: this.state.shoppingList,
     })
-
-  }
+  },
+  async CROSSOUT({ commit }, index) {
+    commit('crossout', index)
+    const data = doc(db, this.state.team, 'data')
+    await updateDoc(data, {
+      shoppingList: this.state.shoppingList,
+    })
+  },
 }

@@ -1,8 +1,7 @@
 <template>
   <div class="input-wrapper">
-    <input v-model="input" type="text" placeholder="New item">
+    <input v-model="input" type="text" placeholder="We need...?">
     <icon-add @click.native="add"/>
-
   </div>
 </template>
 <script>
@@ -29,12 +28,12 @@ input[type=text] {
   all: unset;
   background: transparent;
   border: none;
-  border-bottom: 2px solid #fff;
+  border-bottom: 1px solid #fff;
   padding: 2px 5px;
-
+  margin-right: 1rem;
+  width: 74%;
   &:focus{
     box-shadow: 1px solid #f2f2f2;
-    border:none;
   }
   &::before{
     content: "☎";
