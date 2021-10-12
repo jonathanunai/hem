@@ -1,9 +1,7 @@
 <template>
   <section class="main-header-section">
     <header class="s-wrap" :class="type">
-      <icon-pen />
-      <h3>HEM</h3>
-      <h4>(Domestic organization)</h4>
+      <div class="logo"> </div>
       <div style="clear: both"></div>
     </header>
   </section>
@@ -18,6 +16,7 @@ export default {
 <style lang="scss" scoped>
 .main-header-section {
   width: 100%;
+  padding: 0;
   header {
     width: 100%;
     text-align: center;
@@ -29,6 +28,13 @@ export default {
       svg {
         width: 60px;
       }
+    }
+    .logo {
+      background: url(/logo_transparent.png) no-repeat;
+      background-position: center;
+      background-size: cover;
+      padding-top: 25%;
+      width: 100%;
     }
   }
 }
