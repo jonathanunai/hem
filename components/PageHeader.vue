@@ -53,14 +53,14 @@ export default {
 </script>
 <style lang="scss" scoped>
 .page-header {
-  background: linear-gradient(90deg, #c02d28, #e66225);
+  // background: linear-gradient(90deg, #c02d28, #e66225);
   width: 100%;
   color: #e6e6e6;
   position: relative;
   z-index: 99;
   .inner {
     padding: 1rem;
-    background: rgba(0, 0, 0, 0.7);
+    // background: rgba(0, 0, 0, 0.7);
     zoom: 1;
     display: flex;
     justify-content: space-between;
@@ -73,6 +73,7 @@ export default {
     position: absolute;
     top: 100%;
     width: 100%;
+    display: none;
   }
   h2 {
     padding: 0;

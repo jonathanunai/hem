@@ -1,7 +1,7 @@
 <template>
   <section class="main-header-section">
     <header class="s-wrap" :class="type">
-      <div class="logo"> </div>
+      <div class="logo"><img src="/logo.png" alt="Hem - Domestic app"></div>
       <div style="clear: both"></div>
     </header>
   </section>
@@ -30,12 +30,17 @@ export default {
       }
     }
     .logo {
-      background: url(/logo_transparent.png) no-repeat;
-      background-position: center;
-      background-size: cover;
-      padding-top: 25%;
+      img{
       width: 100%;
+
+      }
+      @include media(">phone", "<=tablet") {
+      }
+      @include media(">desktop") {
+      }
+
     }
+
   }
 }
 </style>
