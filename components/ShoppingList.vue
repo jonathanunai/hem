@@ -1,6 +1,6 @@
 <template>
   <div style="">
-    <h3 v-if="filteredList.length > 0">Shopping list</h3>
+    <h3 v-if="filteredList.length > 0">The Shopping list</h3>
     <h3 v-else style="padding-top: 1rem">Start a new shopping list!</h3>
     <ul>
       <li
@@ -36,6 +36,7 @@ export default {
 li {
   cursor: pointer;
   margin-top: 4px;
+  font-size: 1.223rem;
 }
 @keyframes strike {
   0% {

@@ -46,6 +46,9 @@ export const actions = {
   ADD_ITEM({ commit }, payload) {
     commit('addItem', payload)
   },
+  ASSIGN_TEAM({ commit }, payload) {
+    commit('assignTeam', payload)
+  },
   async CLEAR_LIST({ commit }) {
     commit('clearList')
     const data = doc(db, this.state.team, 'data')

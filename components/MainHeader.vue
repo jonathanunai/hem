@@ -1,7 +1,7 @@
 <template>
   <section class="main-header-section">
     <header class="s-wrap" :class="type">
-      <div class="logo"><img src="/logo.png" alt="Hem - Domestic app"></div>
+      <div class="logo"><img src="/logo_new.png" alt="Hem - Domestic app" /></div>
       <div style="clear: both"></div>
     </header>
   </section>
@@ -30,17 +30,25 @@ export default {
       }
     }
     .logo {
-      img{
+      margin: auto;
       width: 100%;
-
+      padding: 3rem;
+      padding-bottom: 0;
+      img {
+        width: 90%;
+        margin: auto;
       }
-      @include media(">phone", "<=tablet") {
+      @include media('>phone', '<=tablet') {
+        width: 70%;
       }
-      @include media(">desktop") {
+      @include media('>tablet', '<=desktop') {
+        width: 60%;
       }
-
+      @include media('>desktop') {
+        width: 50%;
+        max-width: 540px;
+      }
     }
-
   }
 }
 </style>

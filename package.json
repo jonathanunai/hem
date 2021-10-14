@@ -22,7 +22,8 @@
     "include-media": "^1.4.10",
     "nuxt": "^2.15.7",
     "slugify": "^1.6.1",
-    "v-easy-dialog": "^1.0.6"
+    "v-easy-dialog": "^1.0.6",
+    "vue2-animate": "^2.1.4"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.14.7",

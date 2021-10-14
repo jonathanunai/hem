@@ -3,9 +3,10 @@
     <div class="inner">
       <div>
         <h2>
-          Hem - <span>{{ team }}</span>
+          Hem-App.com
         </h2>
       </div>
+      <h2><span>{{ team }}</span></h2>
       <div class="user-info">
         <img :src="avatar" @click="showUserMenu = !showUserMenu" />
         <transition name="tilt-in">
@@ -78,9 +79,29 @@ export default {
   h2 {
     padding: 0;
     margin: 0;
+    color: $colLightBlue;
+    position: relative;
+            font-size: 1.2rem;
     span {
-      color: #e66225;
+      color: #fff;
+      &::before {
+        content: 'Team';
+        position: absolute;
+        right: -8px;
+        top: 40%;
+        color: $colLightBlue;
+        font-size: 0.86rem;
+        transform: skew(-0.02turn, -14deg);
+      @include media('>phone') {
+        top: 60%;
+      }
+
+      }
     }
+      @include media('>phone') {
+        font-size: 2rem;
+      }
+
   }
   .user-info {
     position: relative;
@@ -95,9 +116,9 @@ export default {
       right: 0;
       width: 200px;
       z-index: 2;
-      box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+      box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+        rgba(0, 0, 0, 0.22) 0px 15px 12px;
       a {
-
       }
     }
     img {
