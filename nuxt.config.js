@@ -81,7 +81,7 @@ export default {
     strategies: {
       google: {
         client_id: "37049723745-3fkv14o86jki23ecrqhtueutqnu8nb9m.apps.googleusercontent.com",
-        redirect_uri: process.env.REDIRECT_URL || 'https://hem.unai.me/login/'
+        redirect_uri: process.env.REDIRECT_URL || 'https://hem-app.com/login/'
       }
     },
     redirect: {
