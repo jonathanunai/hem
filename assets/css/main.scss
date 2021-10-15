@@ -32,7 +32,7 @@ body {
     flex: 1 1 auto;
     padding: 2rem 1rem;
     width: 90%;
-    margin-top: 2rem;
+    margin-top: 3rem;
 }
 @media (min-width: 768px) {
   .page-inner {
@@ -217,6 +217,15 @@ input[type=text] {
   .btn {
     padding: 15px 32px;
   }
+}
+.vue-simple-suggest.designed .suggestions .suggest-item, .vue-simple-suggest.designed .suggestions .misc-item {
+  color: $colDarkGrey;
+  font-family: 'Coming Soon', cursive;
+
+}
+.page-inner .vue-simple-suggest.designed .suggestions .suggest-item.hover {
+  background-color: $colLightBlue !important;
+  color: #fff !important;
 }
 .v-easy-dialog--backdrop-btn {
   background: transparent;

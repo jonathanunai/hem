@@ -7,9 +7,6 @@
       <registration-modal />
     </div>
     <page-header />
-    <transition name="bounce">
-      <main-header v-if="!goShopping" :type="'horizontal'" />
-    </transition>
     <div class="page-inner">
       <main>
         <transition name="fade">
@@ -52,7 +49,7 @@ export default {
   asyncData({ $auth, store }) {
     store
       .dispatch('LOAD_TEAM', $auth.user.email)
-      .then((val) => store.dispatch('TOGGLE_LOADING'))
+      .then((val) => store.dispatch('LOADED'))
   },
   data() {
     return {

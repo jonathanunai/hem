@@ -26,6 +26,9 @@
             </div>
           </div>
           <div v-else key="2" style="animation-duration: 0.4s">
+            <div v-if="errorInCode" class="error">
+              The code does not match any team
+            </div>
             <h4>Enter your code to join a team! ;)</h4>
             <input v-model="code" type="text" placeholder="Enter your code" />
             <div class="flex-col">
@@ -49,7 +52,14 @@
 </template>
 <script>
 import VEasyDialog from 'v-easy-dialog'
-import { doc, setDoc } from 'firebase/firestore'
+import {
+  doc,
+  setDoc,
+  collection,
+  query,
+  where,
+  getDocs,
+} from 'firebase/firestore'
 import { db } from '~/plugins/firebase.js'
 function makeid(length) {
   let result = ''
@@ -74,6 +84,7 @@ export default {
       code: '',
       hasACode: false,
       show: false,
+      errorInCode: false,
     }
   },
   methods: {
@@ -90,11 +101,25 @@ export default {
         shoppingList: {},
       })
       this.$store.dispatch('ASSIGN_TEAM', this.teamName)
-
     },
 
-    joinTeam() {
+    async joinTeam() {
+      if (this.code.length < 2) return
+      const teamsRef = collection(db, 'teams')
+      const q = query(teamsRef, where('code', '==', this.code))
+      const querySnapshot = await getDocs(q)
+      if (querySnapshot.docs.length > 0) {
+        this.$store.dispatch('LOADING')
+         await setDoc(doc(db, 'users', this.$auth.user.email), {
+          team: querySnapshot.docs[0].id,
+        })
+        this.$store.dispatch('ASSIGN_TEAM', querySnapshot.docs[0].id)
+        this.$store.dispatch('LOAD_TEAM', this.$auth.user.email).then(() => this.$store.dispatch('LOADED'))
 
+        console.log(querySnapshot.docs[0].id)
+      } else {
+        this.errorInCode = true
+      }
     },
   },
 }
@@ -126,6 +151,9 @@ export default {
   .text-link {
     color: $colMidRed;
     cursor: pointer;
+  }
+  .error {
+    color: red;
   }
 }
 </style>

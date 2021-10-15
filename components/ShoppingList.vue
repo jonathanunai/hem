@@ -3,13 +3,15 @@
     <h3 v-if="filteredList.length > 0">The Shopping list</h3>
     <h3 v-else style="padding-top: 1rem">Start a new shopping list!</h3>
     <ul>
-      <li
-        v-for="(item, index) in filteredList"
-        :key="index"
-        @click="crossout(item.item)"
-      >
-        <span :class="item.state">{{ item.item }}</span>
-      </li>
+      <transition-group name="bounce">
+        <li
+          v-for="(item, index) in filteredList"
+          :key="index"
+          @click="crossout(item.item)"
+        >
+          <span :class="item.state">{{ item.item }}</span>
+        </li>
+      </transition-group>
     </ul>
   </div>
 </template>
@@ -37,6 +39,7 @@ li {
   cursor: pointer;
   margin-top: 4px;
   font-size: 1.223rem;
+  font-family: 'Coming Soon', cursive;
 }
 @keyframes strike {
   0% {

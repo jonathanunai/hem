@@ -31,8 +31,6 @@ export default {
 }
 </script>
 <style lang="scss">
-.user-info {
-  position: relative;
   .user-menu {
     position: absolute;
     display: flex;
@@ -61,10 +59,5 @@ export default {
       }
     }
   }
-  img {
-    border-radius: 50%;
-    cursor: pointer;
-    width: 30px;
-  }
-}
+
 </style>

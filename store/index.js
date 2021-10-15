@@ -1,4 +1,4 @@
-import { doc, getDoc, updateDoc } from 'firebase/firestore'
+import { doc, getDoc, updateDoc} from 'firebase/firestore'
 import { db } from '~/plugins/firebase.js'
 
 export const state = () => ({
@@ -16,6 +16,9 @@ export const mutations = {
   toggleLoading(state) {
     state.loading = !state.loading
   },
+  changeLoading(state, payload) {
+    state.loading = payload
+  },
   toggleUserMenu(state) {
     state.showUserMenu = !state.showUserMenu
   },
@@ -26,19 +29,21 @@ export const mutations = {
     state.shoppingList = payload
   },
   addItem(state, payload) {
-    const foundIndex = state.shoppingList.findIndex(x => x.item === payload.item);
-    console.log(foundIndex)
+    const foundIndex = state.shoppingList.findIndex(
+      (x) => x.item === payload.item
+    )
     if (foundIndex !== -1)
-      state.shoppingList[foundIndex] = payload;
-    else
-      state.shoppingList.push(payload)
+      state.shoppingList.find((el) => el.item === payload.item).state =
+        'order'
+    else state.shoppingList.push(payload)
   },
   clearList(state) {
     state.shoppingList.every((el) => (el.state = 'inactive'))
   },
   crossout(state, item) {
     const ind = state.shoppingList.findIndex((obj) => obj.item === item)
-    state.shoppingList[ind].state = state.shoppingList[ind].state === 'crossed' ? 'order' : 'crossed'
+    state.shoppingList[ind].state =
+      state.shoppingList[ind].state === 'crossed' ? 'order' : 'crossed'
   },
 }
 
@@ -57,23 +62,28 @@ export const actions = {
     } else {
       console.log('No such document!')
     }
-    return new Promise(function(resolve, reject) {
-      resolve('Loaded');
-    });
-    },
+    return new Promise(function (resolve, reject) {
+      resolve('Loaded')
+    })
+  },
   async ADD_ITEM({ commit }, payload) {
     commit('addItem', payload)
     const data = doc(db, this.state.team, 'data')
     await updateDoc(data, {
       shoppingList: this.state.shoppingList,
     })
-
   },
   ASSIGN_TEAM({ commit }, payload) {
     commit('assignTeam', payload)
   },
   TOGGLE_LOADING({ commit }) {
     commit('toggleLoading')
+  },
+  LOADED({ commit }) {
+    commit('changeLoading', false)
+  },
+  LOADING({ commit }) {
+    commit('changeLoading', true)
   },
   TOGGLE_USERMENU({ commit }) {
     commit('toggleUserMenu')
@@ -94,5 +104,5 @@ export const actions = {
     await updateDoc(data, {
       shoppingList: this.state.shoppingList,
     })
-  },
+  }
 }

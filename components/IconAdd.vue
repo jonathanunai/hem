@@ -1,8 +1,8 @@
 <template>
-  <div>+</div>
+  <div class="plus">+</div>
 </template>
-<style lang="scss" scoped>
-div {
+<style lang="scss">
+.plus {
     background: $colLightBlue;
     border-radius: 50%;
     color: $colDarkGrey;
