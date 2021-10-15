@@ -14,11 +14,11 @@
   </div>
 </template>
 <script>
+import { mapState } from 'vuex'
+
 export default {
   computed: {
-    shoppingList() {
-      return this.$store.state.shoppingList
-    },
+    ...mapState(['shoppingList']),
     filteredList() {
       return this.shoppingList.filter((i) =>
         ['crossed', 'order'].includes(i.state)

@@ -3,7 +3,7 @@
     <v-easy-dialog v-model="notRegistered">
       <div class="registration flex-col">
         <transition name="lightSpeed" mode="out-in">
-          <div key="1" v-if="!hasACode" style="animation-duration: 0.4s">
+          <div v-if="!hasACode" key="1" style="animation-duration: 0.4s">
             <h4 @click="show = !show">Register for free!</h4>
             <div>All you nead is a great name for your house team:</div>
             <input v-model="teamName" type="text" placeholder="Team name" />

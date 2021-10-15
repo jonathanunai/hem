@@ -23,6 +23,8 @@
     "nuxt": "^2.15.7",
     "slugify": "^1.6.1",
     "v-easy-dialog": "^1.0.6",
+    "vue-simple-suggest": "^1.11.2",
+    "vue-suggestion": "^2.0.0",
     "vue2-animate": "^2.1.4"
   },
   "devDependencies": {

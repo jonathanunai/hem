@@ -1,22 +1,21 @@
 <template>
   <div class="page-wrapper">
-    <div v-if="!team" class="registration-wrapper">
+    <transition name="fade">
+      <loading v-if="loading" />
+    </transition>
+    <div v-if="!team && !loading" class="registration-wrapper">
       <registration-modal />
     </div>
     <page-header />
-    <main-header :type="'horizontal'" />
+    <transition name="bounce">
+      <main-header v-if="!goShopping" :type="'horizontal'" />
+    </transition>
     <div class="page-inner">
       <main>
-        <new-item />
+        <transition name="fade">
+          <new-item v-if="!goShopping" />
+        </transition>
         <shopping-list />
-        <button
-          v-if="filteredList.length > 0"
-          class="btn"
-          role="button"
-          @click="confirmClearListModal = true"
-        >
-          Clear list
-        </button>
         <v-easy-dialog v-model="confirmClearListModal">
           <div class="flex-col">
             <h4 style="padding-bottom: 2rem">Confirm deleting all the list!</h4>
@@ -38,21 +37,22 @@
       </main>
     </div>
 
-    <page-footer />
+    <page-footer v-if="!goShopping" />
   </div>
 </template>
 
 <script>
 import VEasyDialog from 'v-easy-dialog'
-import { doc, updateDoc } from 'firebase/firestore'
-import { db } from '~/plugins/firebase.js'
+import { mapState } from 'vuex'
 
 export default {
   components: {
     VEasyDialog,
   },
   asyncData({ $auth, store }) {
-    store.dispatch('LOAD_TEAM', $auth.user.email)
+    store
+      .dispatch('LOAD_TEAM', $auth.user.email)
+      .then((val) => store.dispatch('TOGGLE_LOADING'))
   },
   data() {
     return {
@@ -60,9 +60,7 @@ export default {
     }
   },
   computed: {
-    shoppingList() {
-      return this.$store.state.shoppingList
-    },
+    ...mapState(['loading', 'shoppingList']),
     filteredList() {
       return this.shoppingList.filter((i) =>
         ['crossed', 'order'].includes(i.state)
@@ -71,8 +69,14 @@ export default {
     team() {
       return this.$store.state.team
     },
+    goShopping() {
+      return this.$store.state.goShopping
+    },
   },
   created() {
+    this.$nuxt.$on('toClearList', () => {
+      this.confirmClearListModal = true
+    })
     this.$nuxt.$on('add-item', (val) => {
       this.createItem(val)
     })
@@ -85,12 +89,8 @@ export default {
   },
 
   methods: {
-    async createItem(val) {
+    createItem(val) {
       this.$store.dispatch('ADD_ITEM', val)
-      const data = doc(db, this.team, 'data')
-      await updateDoc(data, {
-        shoppingList: this.$store.state.shoppingList,
-      })
     },
     clearListConfirmed() {
       this.$store.dispatch('CLEAR_LIST')

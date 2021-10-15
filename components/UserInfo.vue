@@ -1,16 +1,70 @@
 <template>
   <div>
-    {{user.name}}
+    <div class="user-menu">
+      <span>Hi {{ $auth.user.name }}!</span>
+      <a v-if="!isShopping" href="#" @click.prevent="goShopping"
+        >Go Shopping!</a
+      >
+      <a v-else href="#" @click.prevent="goShopping">Stop Shopping!</a>
+      <a href="#" @click.prevent="clearList">Clear shopping list</a>
+      <a href="#" @click.prevent="$nuxt.$emit('logout')">Logout</a>
+    </div>
   </div>
 </template>
 <script>
 export default {
-  props: {
-    user: {
-      type: Object,
-      default:  () => { return {name: 'Not set'} }
+  computed: {
+    isShopping() {
+      return this.$store.state.goShopping
+    },
+  },
+  methods: {
+    goShopping() {
+      this.$store.dispatch('TOGGLE_GO_SHOPPING')
+      this.$store.dispatch('TOGGLE_USERMENU')
+    },
+    clearList() {
+      this.$nuxt.$emit('toClearList')
+      this.$store.dispatch('TOGGLE_USERMENU')
+    },
+  },
+}
+</script>
+<style lang="scss">
+.user-info {
+  position: relative;
+  .user-menu {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    background: $colLightBlue;
+    color: $colDarkGrey;
+    padding: 0.5rem;
+    right: 0;
+    width: 200px;
+    border-radius: 0.2rem;
+    z-index: 2;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+      rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    span {
+      border-bottom: 2px solid #fff;
+      margin-bottom: 0.625rem;
+      font-weight: bold;
+      width: 100%;
+    }
+    a {
+      margin-bottom: 0.225rem;
+      &:hover {
+        color: #fff;
       }
+    }
+  }
+  img {
+    border-radius: 50%;
+    cursor: pointer;
+    width: 30px;
   }
 }
-
-</script>
+</style>

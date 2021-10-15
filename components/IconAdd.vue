@@ -3,20 +3,20 @@
 </template>
 <style lang="scss" scoped>
 div {
-    background: #3a3a3a;
+    background: $colLightBlue;
     border-radius: 50%;
-    color: #fff;
+    color: $colDarkGrey;
     cursor: pointer;
     font-size: 27px;
     font-weight: 700;
-    height: 40px;
+    height: 39px;
+    width: 39px;
     right: 10px;
     position: absolute;
     text-align: center;
-    top: -4px;
-    width: 40px;
+    top: 0;
     &:hover {
-      background: #bbb;
+      background: #fff;
       color: #3a3a3a;
     }
 }

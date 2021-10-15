@@ -4,26 +4,41 @@ import { db } from '~/plugins/firebase.js'
 export const state = () => ({
   team: null,
   shoppingList: [],
+  showUserMenu: false,
+  goShopping: false,
+  loading: true,
 })
 
 export const mutations = {
   assignTeam(state, payload) {
     state.team = payload
   },
+  toggleLoading(state) {
+    state.loading = !state.loading
+  },
+  toggleUserMenu(state) {
+    state.showUserMenu = !state.showUserMenu
+  },
+  toggleGoShopping(state) {
+    state.goShopping = !state.goShopping
+  },
   loadList(state, payload) {
     state.shoppingList = payload
   },
   addItem(state, payload) {
-    state.shoppingList.push(payload)
+    const foundIndex = state.shoppingList.findIndex(x => x.item === payload.item);
+    console.log(foundIndex)
+    if (foundIndex !== -1)
+      state.shoppingList[foundIndex] = payload;
+    else
+      state.shoppingList.push(payload)
   },
   clearList(state) {
     state.shoppingList.every((el) => (el.state = 'inactive'))
   },
   crossout(state, item) {
     const ind = state.shoppingList.findIndex((obj) => obj.item === item)
-    if (ind)
-      state.shoppingList[ind].state =
-        state.shoppingList[ind].state === 'crossed' ? 'order' : 'crossed'
+    state.shoppingList[ind].state = state.shoppingList[ind].state === 'crossed' ? 'order' : 'crossed'
   },
 }
 
@@ -42,12 +57,29 @@ export const actions = {
     } else {
       console.log('No such document!')
     }
-  },
-  ADD_ITEM({ commit }, payload) {
+    return new Promise(function(resolve, reject) {
+      resolve('Loaded');
+    });
+    },
+  async ADD_ITEM({ commit }, payload) {
     commit('addItem', payload)
+    const data = doc(db, this.state.team, 'data')
+    await updateDoc(data, {
+      shoppingList: this.state.shoppingList,
+    })
+
   },
   ASSIGN_TEAM({ commit }, payload) {
     commit('assignTeam', payload)
+  },
+  TOGGLE_LOADING({ commit }) {
+    commit('toggleLoading')
+  },
+  TOGGLE_USERMENU({ commit }) {
+    commit('toggleUserMenu')
+  },
+  TOGGLE_GO_SHOPPING({ commit }) {
+    commit('toggleGoShopping')
   },
   async CLEAR_LIST({ commit }) {
     commit('clearList')

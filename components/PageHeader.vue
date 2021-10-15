@@ -2,17 +2,24 @@
   <div class="page-header">
     <div class="inner">
       <div>
+        <h2>Hem-App.com</h2>
+      </div>
+      <div>
         <h2>
-          Hem-App.com
+          <span>{{ team }}</span>
         </h2>
       </div>
-      <h2><span>{{ team }}</span></h2>
       <div class="user-info">
-        <img :src="avatar" @click="showUserMenu = !showUserMenu" />
+        <img :src="avatar" @click="$store.dispatch('TOGGLE_USERMENU')" />
         <transition name="tilt-in">
-          <div v-if="showUserMenu" class="user-menu">
-            {{ $auth.user.name }}
-            <a href="#" @click.prevent="$nuxt.$emit('logout')">Logout</a>
+          <user-info v-if="showUserMenu" />
+        </transition>
+        <transition name="fade">
+          <div
+            v-if="showUserMenu"
+            class="background"
+            @click="$store.dispatch('TOGGLE_USERMENU')"
+          >
           </div>
         </transition>
       </div>
@@ -35,11 +42,6 @@
 </template>
 <script>
 export default {
-  data() {
-    return {
-      showUserMenu: false,
-    }
-  },
   computed: {
     team() {
       return this.$store.state.team
@@ -48,6 +50,9 @@ export default {
       return this.$auth.user.picture
         ? this.$auth.user.picture
         : '/img/avatar.png'
+    },
+    showUserMenu() {
+      return this.$store.state.showUserMenu
     },
   },
 }
@@ -65,6 +70,9 @@ export default {
     zoom: 1;
     display: flex;
     justify-content: space-between;
+    > div {
+    }
+    align-items: center;
   }
   .diagonal {
     fill: #e66225;
@@ -81,7 +89,7 @@ export default {
     margin: 0;
     color: $colLightBlue;
     position: relative;
-            font-size: 1.2rem;
+    font-size: 1.2rem;
     span {
       color: #fff;
       &::before {
@@ -92,40 +100,22 @@ export default {
         color: $colLightBlue;
         font-size: 0.86rem;
         transform: skew(-0.02turn, -14deg);
-      @include media('>phone') {
-        top: 60%;
-      }
-
+        @include media('>phone') {
+          top: 60%;
+        }
       }
     }
-      @include media('>phone') {
-        font-size: 2rem;
-      }
-
+    @include media('>phone') {
+      font-size: 2rem;
+    }
   }
-  .user-info {
-    position: relative;
-    .user-menu {
-      position: absolute;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-end;
-      background: #e66225;
-      padding: 0.5rem;
-      right: 0;
-      width: 200px;
-      z-index: 2;
-      box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
-        rgba(0, 0, 0, 0.22) 0px 15px 12px;
-      a {
-      }
-    }
-    img {
-      border-radius: 50%;
-      cursor: pointer;
-      width: 30px;
-    }
+  .background {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.62);
   }
 }
 </style>
