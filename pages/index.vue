@@ -1,8 +1,9 @@
 <template>
-  <div class="page-wrapper">
+  <div class="page-wrapper" :class="goShopping ? 'goShopping' : ''">
     <transition name="fade">
       <loading v-if="loading" />
     </transition>
+    <div v-if="goShopping"><img src="/img/close.png" alt="Close" class="close-icon" @click="stopShopping"> </div>
     <div v-if="!team && !loading" class="registration-wrapper">
       <registration-modal />
     </div>
@@ -10,7 +11,7 @@
       <show-team-modal />
     </div>
 
-    <page-header />
+    <page-header v-if="!goShopping" />
     <div class="page-inner">
       <main>
         <transition name="fade">
@@ -97,6 +98,9 @@ export default {
       this.$store.dispatch('CLEAR_LIST')
       this.confirmClearListModal = false
     },
+    stopShopping() {
+      this.$store.dispatch('TOGGLE_GO_SHOPPING')
+    },
     async logout() {
       try {
         this.$toast.show('Logging out...')
@@ -119,6 +123,30 @@ main {
   width: 90%;
   .btn {
     margin-top: 1rem;
+  }
+}
+.goShopping {
+  background: url(/img/paper.jpeg);
+  background-position: center top;
+  background-size: 100% auto;
+  color: $colDarkGrey;
+  li {
+    font-size: 1.4rem;
+    margin-top: 8px;
+    span.crossed {
+      color: $colGreyer;
+      &::after {
+        height: 3px;
+        background: $colDarkGrey;
+      }
+    }
+  }
+  .close-icon {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    width: 30px;
+    cursor: pointer;
   }
 }
 </style>

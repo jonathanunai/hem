@@ -49,7 +49,9 @@ export default {
   position: relative;
   margin-top: 3rem;
 }
+.vue-simple-suggest.designed .input-wrapper  {
+  margin-right: 60px;
+}
 .vue-simple-suggest.designed .input-wrapper input {
-  width: 80%;
 }
 </style>

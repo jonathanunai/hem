@@ -1,12 +1,15 @@
 <template>
   <div style="">
-    <h3 v-if="filteredList.length > 0">The Shopping list</h3>
-    <h3 v-else style="padding-top: 1rem">Start a new shopping list!</h3>
+    <div style="position: relative">
+      <h3 v-if="filteredList.length > 0">The Shopping list</h3>
+      <h3 v-else style="padding-top: 1rem">Start a new shopping list!</h3>
+      <icon-refresh @click.native="refresh" />
+    </div>
     <ul>
       <transition-group name="bounce">
         <li
-          v-for="(item, index) in filteredList"
-          :key="index"
+          v-for="item in filteredList"
+          :key="item.item"
           @click="crossout(item.item)"
         >
           <span :class="item.state">{{ item.item }}</span>
@@ -30,6 +33,10 @@ export default {
   methods: {
     crossout(item) {
       this.$store.dispatch('CROSSOUT', item)
+    },
+    refresh() {
+      this.$store.dispatch('LOADING')
+      this.$store.dispatch('REFRESH_LIST').then(() => this.$store.dispatch('LOADED'))
     },
   },
 }

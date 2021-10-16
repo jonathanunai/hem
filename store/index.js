@@ -42,7 +42,9 @@ export const mutations = {
     else state.shoppingList.push(payload)
   },
   clearList(state) {
-    state.shoppingList.every((el) => (el.state = 'inactive'))
+    state.shoppingList = state.shoppingList.map((el) => {
+      return { ...el, state: 'inactive', quantity: 1 }
+    })
   },
   crossout(state, item) {
     const ind = state.shoppingList.findIndex((obj) => obj.item === item)
@@ -70,6 +72,15 @@ export const actions = {
       resolve('Loaded')
     })
   },
+  async REFRESH_LIST({ commit }) {
+      const docRef = doc(db, this.state.team, 'data')
+      const docSnap = await getDoc(docRef)
+      if (docSnap.exists()) commit('loadList', docSnap.data().shoppingList)
+      else console.log('No such document!')
+      return new Promise(function (resolve, reject) {
+        resolve('Refreshed')
+      })
+  },
   async ADD_ITEM({ commit }, payload) {
     commit('addItem', payload)
     const data = doc(db, this.state.team, 'data')
@@ -96,7 +107,7 @@ export const actions = {
     commit('toggleTeamInfo')
   },
   CLOSE_TEAMINFO({ commit }) {
-    commit('toggleTeamInfo','close')
+    commit('toggleTeamInfo', 'close')
   },
   TOGGLE_GO_SHOPPING({ commit }) {
     commit('toggleGoShopping')
