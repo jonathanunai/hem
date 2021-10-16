@@ -7,6 +7,7 @@
       >
       <a v-else href="#" @click.prevent="goShopping">Stop Shopping!</a>
       <a href="#" @click.prevent="clearList">Clear shopping list</a>
+      <a href="#" @click.prevent="showTeamCode">Show team code</a>
       <a href="#" @click.prevent="$nuxt.$emit('logout')">Logout</a>
     </div>
   </div>
@@ -27,6 +28,10 @@ export default {
       this.$nuxt.$emit('toClearList')
       this.$store.dispatch('TOGGLE_USERMENU')
     },
+    showTeamCode() {
+      this.$store.dispatch('TOGGLE_TEAMINFO')
+      this.$store.dispatch('TOGGLE_USERMENU')
+    }
   },
 }
 </script>

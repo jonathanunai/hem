@@ -6,6 +6,10 @@
     <div v-if="!team && !loading" class="registration-wrapper">
       <registration-modal />
     </div>
+    <div v-if="showTeamInfo" class="registration-wrapper">
+      <show-team-modal />
+    </div>
+
     <page-header />
     <div class="page-inner">
       <main>
@@ -57,7 +61,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['loading', 'shoppingList']),
+    ...mapState(['loading', 'shoppingList', 'showTeamInfo']),
     filteredList() {
       return this.shoppingList.filter((i) =>
         ['crossed', 'order'].includes(i.state)
@@ -77,7 +81,7 @@ export default {
     this.$nuxt.$on('add-item', (val) => {
       this.createItem(val)
     })
-    this.$nuxt.$on('logout', (val) => {
+    this.$nuxt.$on('logout', () => {
       this.logout()
     })
   },

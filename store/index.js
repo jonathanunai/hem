@@ -1,10 +1,11 @@
-import { doc, getDoc, updateDoc} from 'firebase/firestore'
+import { doc, getDoc, updateDoc } from 'firebase/firestore'
 import { db } from '~/plugins/firebase.js'
 
 export const state = () => ({
   team: null,
   shoppingList: [],
   showUserMenu: false,
+  showTeamInfo: false,
   goShopping: false,
   loading: true,
 })
@@ -22,6 +23,10 @@ export const mutations = {
   toggleUserMenu(state) {
     state.showUserMenu = !state.showUserMenu
   },
+  toggleTeamInfo(state, payload) {
+    if (payload === 'closed') state.showTeamInfo = false
+    else state.showTeamInfo = !state.showTeamInfo
+  },
   toggleGoShopping(state) {
     state.goShopping = !state.goShopping
   },
@@ -33,8 +38,7 @@ export const mutations = {
       (x) => x.item === payload.item
     )
     if (foundIndex !== -1)
-      state.shoppingList.find((el) => el.item === payload.item).state =
-        'order'
+      state.shoppingList.find((el) => el.item === payload.item).state = 'order'
     else state.shoppingList.push(payload)
   },
   clearList(state) {
@@ -88,6 +92,12 @@ export const actions = {
   TOGGLE_USERMENU({ commit }) {
     commit('toggleUserMenu')
   },
+  TOGGLE_TEAMINFO({ commit }) {
+    commit('toggleTeamInfo')
+  },
+  CLOSE_TEAMINFO({ commit }) {
+    commit('toggleTeamInfo','close')
+  },
   TOGGLE_GO_SHOPPING({ commit }) {
     commit('toggleGoShopping')
   },
@@ -104,5 +114,5 @@ export const actions = {
     await updateDoc(data, {
       shoppingList: this.state.shoppingList,
     })
-  }
+  },
 }
