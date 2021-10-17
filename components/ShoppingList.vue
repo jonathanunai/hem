@@ -53,6 +53,9 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+ul {
+  padding-left: 12px;
+}
 li {
   margin-top: 4px;
   font-size: 1.223rem;
@@ -104,6 +107,7 @@ h3 {
     width: 20px;
     height: 20px;
     font-size: 0.9rem;
+    right: unset;
   }
 }
 </style>
