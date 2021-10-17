@@ -54,8 +54,6 @@ export const mutations = {
       state.shoppingList[ind].state === 'crossed' ? 'order' : 'crossed'
   },
   changeQuantity(state, item) {
-    console.log(item.to)
-
     const ind = state.shoppingList.findIndex((obj) => obj.item === item.item)
     const q = state.shoppingList[ind].quantity
     state.shoppingList[ind].quantity = item.to === 'decrease' ? q - 1 : q + 1

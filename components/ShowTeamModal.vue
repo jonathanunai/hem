@@ -23,12 +23,6 @@ export default {
       code: 'null',
     }
   },
-  watch: {
-    show(val, old) {
-      console.log(val, old)
-      // if (!val) this.$store.dispatch('CLOSE_TEAMINFO')
-    },
-  },
   created() {
     this.loadTeamInfo()
   },

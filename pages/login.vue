@@ -50,6 +50,10 @@
                 <p>Hem App is completely free to use. Nice!</p>
               </li>
               <li>
+                <span>How does it work?</span>
+                <p>Use your google account to log in, choose a name for your team/family and voila! Start using your list.</p>
+              </li>
+              <li>
                 <span>Is it addictive?</span>
                 <p>
                   Yes. Once you try it, you wont be able to live without it. Not

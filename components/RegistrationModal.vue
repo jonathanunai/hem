@@ -116,7 +116,6 @@ export default {
         this.$store.dispatch('ASSIGN_TEAM', querySnapshot.docs[0].id)
         this.$store.dispatch('LOAD_TEAM', this.$auth.user.email).then(() => this.$store.dispatch('LOADED'))
 
-        console.log(querySnapshot.docs[0].id)
       } else {
         this.errorInCode = true
       }
