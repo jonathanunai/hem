@@ -11,7 +11,7 @@
             {{ item.item }}
             <span v-if="item.quantity > 1"> ({{ item.quantity }})</span>
           </span>
-          <div class="buttons">
+          <div v-if="!goShopping" class="buttons">
             <icon-add
               v-if="item.quantity > 1"
               :inverted="true"
@@ -29,7 +29,7 @@ import { mapState } from 'vuex'
 
 export default {
   computed: {
-    ...mapState(['shoppingList']),
+    ...mapState(['shoppingList', 'goShopping']),
     filteredList() {
       return this.shoppingList.filter((i) =>
         ['crossed', 'order'].includes(i.state)
