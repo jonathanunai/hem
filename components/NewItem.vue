@@ -36,7 +36,7 @@ export default {
   methods: {
     add() {
       if (this.item)
-        this.$nuxt.$emit('add-item', { item: this.item, state: 'order' })
+        this.$nuxt.$emit('add-item', { item: this.item, state: 'order', quantity: 1 })
       this.item = ''
     },
     suggestionClicked(val) {

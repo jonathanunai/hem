@@ -4,8 +4,9 @@
       <loading v-if="loading" />
     </transition>
     <div v-if="goShopping">
+      <icon-refresh />
       <img
-        src="/img/close.png"
+        src="/img/cross.png"
         alt="Close"
         class="close-icon"
         @click="stopShopping"
@@ -94,7 +95,9 @@ export default {
     })
   },
   beforeDestroy() {
+    this.$nuxt.$off('toClearList')
     this.$nuxt.$off('add-item')
+    this.$nuxt.$off('logout')
   },
 
   methods: {
@@ -138,10 +141,11 @@ main {
   color: $colDarkGrey;
   .page-inner {
     margin-top: 0;
+    padding-top: 0;
   }
   ul {
-  padding-left: 30px;
-}
+    padding-left: 30px;
+  }
 
   li {
     font-size: 1.5rem;
@@ -164,15 +168,17 @@ main {
   .close-icon,
   .refresh-icon {
     position: fixed;
-    top: 12px;
+    top: 22px;
     right: 12px;
-    width: 30px;
+    width: 20px;
     cursor: pointer;
     transition: all 0.4s ease;
     z-index: 6;
   }
   .refresh-icon {
-    right: 52px;
+    left: 38px;
+    top: 20px;
+    width: 28px;
   }
   .buttons {
     display: none;

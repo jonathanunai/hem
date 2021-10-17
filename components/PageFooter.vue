@@ -14,6 +14,7 @@ export default {
     position: relative;
     height: 30px;
     margin-top: -30px;
+    color: $colGrey;
 }
 
 </style>

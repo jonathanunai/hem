@@ -55,6 +55,7 @@ export default {
 <style lang="scss" scoped>
 ul {
   padding-left: 12px;
+  padding-top: 20px;
 }
 li {
   margin-top: 4px;

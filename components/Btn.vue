@@ -51,10 +51,10 @@ export default {
   transition: color .2s;
   font-size: 14px;
   padding: 10px 20px;
-  background: #c94f17;
+  background: $colBlue;
   border: none;
   border-radius: 40px;
-  color: #fff;
+  color: $colDarkGrey;
   display: block;
   line-height: 1.25;
   padding: 10px 20px;
@@ -63,7 +63,7 @@ export default {
       width: 100%;
 }
 .round:hover {
-    background: #e7682e;
+    background: $colLightBlue;
     color: #fff;
 }
 .square:before {
