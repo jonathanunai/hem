@@ -68,8 +68,8 @@ export default {
     cursor: pointer;
     transition: all 0.4s ease;
     position: absolute;
-    height: 39px;
-    width: 39px;
+    height: 34px;
+    width: 34px;
     right: 0px;
     top: 0;
   }

@@ -14,11 +14,11 @@ export default {
     border-radius: 50%;
     color: $colDarkGrey;
     cursor: pointer;
-    font-size: 27px;
+    font-size: 23px;
     font-weight: 700;
-    height: 39px;
-    width: 39px;
-    right: 43px;
+    height: 34px;
+    width: 34px;
+    right: 38px;
     position: absolute;
     text-align: center;
     top: 0;

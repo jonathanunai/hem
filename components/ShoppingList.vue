@@ -115,6 +115,8 @@ h3 {
   display: flex;
   position: relative;
   align-items: center;
+      justify-content: end;
+    padding-right: 10px;
   .plus {
     position: relative;
     margin-right: 4px;

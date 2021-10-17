@@ -22,6 +22,10 @@ export default {
   methods: {
     goShopping() {
       this.$store.dispatch('TOGGLE_GO_SHOPPING')
+      this.$store.dispatch('LOADING')
+      this.$store
+        .dispatch('REFRESH_LIST')
+        .then(() => this.$store.dispatch('LOADED'))
       this.$store.dispatch('TOGGLE_USERMENU')
     },
     clearList() {
