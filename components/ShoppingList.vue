@@ -3,16 +3,22 @@
     <div style="position: relative">
       <h3 v-if="filteredList.length > 0">The Shopping list</h3>
       <h3 v-else style="padding-top: 1rem">Start a new shopping list!</h3>
-      <icon-refresh @click.native="refresh" />
     </div>
     <ul>
       <transition-group name="bounce">
-        <li
-          v-for="item in filteredList"
-          :key="item.item"
-          @click="crossout(item.item)"
-        >
-          <span :class="item.state">{{ item.item }}</span>
+        <li v-for="item in filteredList" :key="item.item">
+          <span :class="item.state" @click="crossout(item.item)">
+            {{ item.item }}
+            <span v-if="item.quantity > 1"> - {{ item.quantity }}</span>
+          </span>
+          <div class="buttons">
+            <icon-add
+              v-if="item.quantity > 1"
+              :inverted="true"
+              @click.native="changeQuantity(item.item, 'decrease')"
+            />
+            <icon-add @click.native="changeQuantity(item.item)" />
+          </div>
         </li>
       </transition-group>
     </ul>
@@ -34,19 +40,27 @@ export default {
     crossout(item) {
       this.$store.dispatch('CROSSOUT', item)
     },
+    changeQuantity(item, to) {
+      this.$store.dispatch('CHANGE_QUANTITY', { item, to })
+    },
     refresh() {
       this.$store.dispatch('LOADING')
-      this.$store.dispatch('REFRESH_LIST').then(() => this.$store.dispatch('LOADED'))
+      this.$store
+        .dispatch('REFRESH_LIST')
+        .then(() => this.$store.dispatch('LOADED'))
     },
   },
 }
 </script>
 <style lang="scss" scoped>
 li {
-  cursor: pointer;
   margin-top: 4px;
   font-size: 1.223rem;
-  font-family: 'Coming Soon', cursive;
+  display: flex;
+  justify-content: space-between;
+  span {
+    cursor: pointer;
+  }
 }
 @keyframes strike {
   0% {
@@ -63,7 +77,7 @@ li {
 .crossed::after {
   content: ' ';
   position: absolute;
-  top: 50%;
+  top: 49%;
   left: 0px;
   width: 100%;
   height: 2px;
@@ -77,5 +91,16 @@ li {
 h3 {
   margin-top: 1rem;
   font-size: 1.4rem;
+}
+.buttons {
+  display: flex;
+  position: relative;
+  .plus {
+    position: relative;
+    margin-right: 4px;
+    width: 20px;
+    height: 20px;
+    font-size: 0.9rem;
+  }
 }
 </style>

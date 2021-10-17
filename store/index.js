@@ -40,6 +40,8 @@ export const mutations = {
     if (foundIndex !== -1)
       state.shoppingList.find((el) => el.item === payload.item).state = 'order'
     else state.shoppingList.push(payload)
+    state.shoppingList.sort((a, b) => a.item.localeCompare(b.item));
+
   },
   clearList(state) {
     state.shoppingList = state.shoppingList.map((el) => {
@@ -50,6 +52,13 @@ export const mutations = {
     const ind = state.shoppingList.findIndex((obj) => obj.item === item)
     state.shoppingList[ind].state =
       state.shoppingList[ind].state === 'crossed' ? 'order' : 'crossed'
+  },
+  changeQuantity(state, item) {
+    console.log(item.to)
+
+    const ind = state.shoppingList.findIndex((obj) => obj.item === item.item)
+    const q = state.shoppingList[ind].quantity
+    state.shoppingList[ind].quantity = item.to === 'decrease' ? q - 1 : q + 1
   },
 }
 
@@ -73,13 +82,13 @@ export const actions = {
     })
   },
   async REFRESH_LIST({ commit }) {
-      const docRef = doc(db, this.state.team, 'data')
-      const docSnap = await getDoc(docRef)
-      if (docSnap.exists()) commit('loadList', docSnap.data().shoppingList)
-      else console.log('No such document!')
-      return new Promise(function (resolve, reject) {
-        resolve('Refreshed')
-      })
+    const docRef = doc(db, this.state.team, 'data')
+    const docSnap = await getDoc(docRef)
+    if (docSnap.exists()) commit('loadList', docSnap.data().shoppingList)
+    else console.log('No such document!')
+    return new Promise(function (resolve, reject) {
+      resolve('Refreshed')
+    })
   },
   async ADD_ITEM({ commit }, payload) {
     commit('addItem', payload)
@@ -119,8 +128,15 @@ export const actions = {
       shoppingList: this.state.shoppingList,
     })
   },
-  async CROSSOUT({ commit }, index) {
-    commit('crossout', index)
+  async CROSSOUT({ commit }, item) {
+    commit('crossout', item)
+    const data = doc(db, this.state.team, 'data')
+    await updateDoc(data, {
+      shoppingList: this.state.shoppingList,
+    })
+  },
+  async CHANGE_QUANTITY({ commit }, item) {
+    commit('changeQuantity', item)
     const data = doc(db, this.state.team, 'data')
     await updateDoc(data, {
       shoppingList: this.state.shoppingList,

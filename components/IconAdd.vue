@@ -1,6 +1,13 @@
 <template>
-  <div class="plus">+</div>
+  <div class="plus">{{inverted ? '-' : '+'}}</div>
 </template>
+<script>
+export default {
+  props: {
+    inverted: {type: Boolean, default: false}
+  }
+}
+</script>
 <style lang="scss">
 .plus {
     background: $colLightBlue;
@@ -11,7 +18,7 @@
     font-weight: 700;
     height: 39px;
     width: 39px;
-    right: 10px;
+    right: 43px;
     position: absolute;
     text-align: center;
     top: 0;

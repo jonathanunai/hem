@@ -1,5 +1,5 @@
 <template>
-  <div class="refresh-icon">
+  <div class="refresh-icon" @click="refresh" >
     <svg
       version="1.1"
       id="Layer_1"
@@ -53,12 +53,24 @@
     </svg>
   </div>
 </template>
+<script>
+export default {
+    methods: {
+    refresh() {
+      this.$store.dispatch('LOADING')
+      this.$store.dispatch('REFRESH_LIST').then(() => this.$store.dispatch('LOADED'))
+    },
+  },
+}
+</script>
 <style lang="scss">
   .refresh-icon {
-    width: 34px;
-    margin: auto;
     cursor: pointer;
-    svg {
-    }
+    transition: all 0.4s ease;
+    position: absolute;
+    height: 39px;
+    width: 39px;
+    right: 0px;
+    top: 0;
   }
 </style>

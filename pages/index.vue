@@ -103,12 +103,11 @@ export default {
     },
     async logout() {
       try {
-        this.$toast.show('Logging out...')
         await this.$auth.logout()
-        this.$toast.success('Successfully logged out')
+        this.$toast.success('You out')
       } catch (e) {
         this.$toast.global.myerror()
-        this.$toast.error('Error while exiting')
+        this.$toast.error('Ooops, something went wrong...')
       }
     },
   },
@@ -130,9 +129,14 @@ main {
   background-position: center top;
   background-size: 100% auto;
   color: $colDarkGrey;
+  .page-inner {
+    margin-top: 0;
+  }
   li {
-    font-size: 1.4rem;
-    margin-top: 8px;
+    font-size: 1.5rem;
+    margin-top: 12px;
+      font-family: 'Coming Soon', cursive;
+
     span.crossed {
       color: $colGreyer;
       &::after {
@@ -141,12 +145,19 @@ main {
       }
     }
   }
-  .close-icon {
+  .close-icon, .refresh-icon {
     position: fixed;
     top: 12px;
     right: 12px;
     width: 30px;
     cursor: pointer;
+    transition: all 0.4s ease;
+  }
+  .refresh-icon {
+    right: 52px;
+  }
+  .buttons {
+    display: none;
   }
 }
 </style>

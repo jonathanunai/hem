@@ -37,12 +37,11 @@ export default {
     async login() {
       this.loggingIn = true
       try {
-        this.$toast.show('Logging in...')
         await this.$auth.loginWith('google')
-        this.$toast.success('Successfully authenticated')
+        this.$toast.success('You in!')
       } catch (e) {
         this.$toast.global.myerror()
-        this.$toast.error('Error while authenticating')
+        this.$toast.error('Oops... not working!')
       }
     },
   },

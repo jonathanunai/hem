@@ -13,13 +13,14 @@
       </div>
       <div class="user-info">
         <img :src="avatar" @click="$store.dispatch('TOGGLE_USERMENU')" />
-        <transition name="tilt-in">
-          <user-info v-if="showUserMenu" />
+        <transition name="zoom">
+          <user-info v-if="showUserMenu" style="animation-duration: 0.2s"/>
         </transition>
         <transition name="fade">
           <div
             v-if="showUserMenu"
             class="background"
+            style="animation-delay: 0.3s; animation-duration: 0.3s"
             @click="$store.dispatch('TOGGLE_USERMENU')"
           ></div>
         </transition>
