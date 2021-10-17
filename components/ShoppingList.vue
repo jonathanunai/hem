@@ -7,17 +7,25 @@
     <ul>
       <transition-group name="bounce">
         <li v-for="item in filteredList" :key="item.item">
-          <span :class="item.state" @click="crossout(item.item)">
-            {{ item.item }}
-            <span v-if="item.quantity > 1"> ({{ item.quantity }})</span>
-          </span>
+          <div class="flex-row">
+            <div v-if="!goShopping" class="buttons fixed-width">
+              <icon-add
+                v-if="item.quantity > 1"
+                :inverted="true"
+                @click.native="changeQuantity(item.item, 'decrease')"
+              />
+              <icon-add @click.native="changeQuantity(item.item)" />
+            </div>
+            <span :class="item.state" @click="crossout(item.item)">
+              {{ item.item }}
+              <span v-if="item.quantity > 1"> ({{ item.quantity }})</span>
+            </span>
+          </div>
           <div v-if="!goShopping" class="buttons">
             <icon-add
-              v-if="item.quantity > 1"
-              :inverted="true"
-              @click.native="changeQuantity(item.item, 'decrease')"
+              class="delete-icon"
+              @click.native="deleteItem(item.item)"
             />
-            <icon-add @click.native="changeQuantity(item.item)" />
           </div>
         </li>
       </transition-group>
@@ -39,6 +47,9 @@ export default {
   methods: {
     crossout(item) {
       this.$store.dispatch('CROSSOUT', item)
+    },
+    deleteItem(item) {
+      this.$store.dispatch('DELETE_ITEM', item)
     },
     changeQuantity(item, to) {
       this.$store.dispatch('CHANGE_QUANTITY', { item, to })
@@ -64,6 +75,7 @@ li {
   justify-content: space-between;
   span {
     cursor: pointer;
+    text-align: left;
     span {
       color: $colLightBlue;
     }
@@ -102,6 +114,7 @@ h3 {
 .buttons {
   display: flex;
   position: relative;
+  align-items: center;
   .plus {
     position: relative;
     margin-right: 4px;
@@ -109,6 +122,16 @@ h3 {
     height: 20px;
     font-size: 0.9rem;
     right: unset;
+  }
+  .delete-icon {
+    transform: rotate(45deg);
+    background: transparent;
+    font-weight: bold;
+    color: red;
+  }
+  &.fixed-width {
+    width: 55px;
+
   }
 }
 </style>

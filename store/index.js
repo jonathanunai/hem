@@ -40,18 +40,19 @@ export const mutations = {
     if (foundIndex !== -1)
       state.shoppingList.find((el) => el.item === payload.item).state = 'order'
     else state.shoppingList.push(payload)
-    state.shoppingList.sort((a, b) => a.item.localeCompare(b.item));
-
+    state.shoppingList.sort((a, b) => a.item.localeCompare(b.item))
   },
   clearList(state) {
     state.shoppingList = state.shoppingList.map((el) => {
       return { ...el, state: 'inactive', quantity: 1 }
     })
   },
-  crossout(state, item) {
-    const ind = state.shoppingList.findIndex((obj) => obj.item === item)
-    state.shoppingList[ind].state =
-      state.shoppingList[ind].state === 'crossed' ? 'order' : 'crossed'
+  changeState(state, item) {
+    const ind = state.shoppingList.findIndex((obj) => obj.item === item.item)
+    if (item.state === 'toggle')
+      state.shoppingList[ind].state =
+        state.shoppingList[ind].state === 'crossed' ? 'order' : 'crossed'
+    else state.shoppingList[ind].state = item.state
   },
   changeQuantity(state, item) {
     const ind = state.shoppingList.findIndex((obj) => obj.item === item.item)
@@ -127,7 +128,7 @@ export const actions = {
     })
   },
   async CROSSOUT({ commit }, item) {
-    commit('crossout', item)
+    commit('changeState', {item, state:'toggle'})
     const data = doc(db, this.state.team, 'data')
     await updateDoc(data, {
       shoppingList: this.state.shoppingList,
@@ -135,6 +136,13 @@ export const actions = {
   },
   async CHANGE_QUANTITY({ commit }, item) {
     commit('changeQuantity', item)
+    const data = doc(db, this.state.team, 'data')
+    await updateDoc(data, {
+      shoppingList: this.state.shoppingList,
+    })
+  },
+  async DELETE_ITEM({ commit }, item) {
+    commit('changeState', {item, state:'inactive'})
     const data = doc(db, this.state.team, 'data')
     await updateDoc(data, {
       shoppingList: this.state.shoppingList,
