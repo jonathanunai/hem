@@ -9,7 +9,7 @@
         <li v-for="item in filteredList" :key="item.item">
           <span :class="item.state" @click="crossout(item.item)">
             {{ item.item }}
-            <span v-if="item.quantity > 1"> - {{ item.quantity }}</span>
+            <span v-if="item.quantity > 1"> ({{ item.quantity }})</span>
           </span>
           <div class="buttons">
             <icon-add
@@ -60,6 +60,9 @@ li {
   justify-content: space-between;
   span {
     cursor: pointer;
+    span {
+      color: $colLightBlue;
+    }
   }
 }
 @keyframes strike {

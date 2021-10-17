@@ -3,7 +3,14 @@
     <transition name="fade">
       <loading v-if="loading" />
     </transition>
-    <div v-if="goShopping"><img src="/img/close.png" alt="Close" class="close-icon" @click="stopShopping"> </div>
+    <div v-if="goShopping">
+      <img
+        src="/img/close.png"
+        alt="Close"
+        class="close-icon"
+        @click="stopShopping"
+      />
+    </div>
     <div v-if="!team && !loading" class="registration-wrapper">
       <registration-modal />
     </div>
@@ -135,7 +142,12 @@ main {
   li {
     font-size: 1.5rem;
     margin-top: 12px;
-      font-family: 'Coming Soon', cursive;
+    font-family: 'Coming Soon', cursive;
+    span {
+      span {
+        color: $colBlue;
+      }
+    }
 
     span.crossed {
       color: $colGreyer;
@@ -145,7 +157,8 @@ main {
       }
     }
   }
-  .close-icon, .refresh-icon {
+  .close-icon,
+  .refresh-icon {
     position: fixed;
     top: 12px;
     right: 12px;
