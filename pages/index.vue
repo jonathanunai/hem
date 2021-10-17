@@ -153,7 +153,7 @@ main {
     font-family: 'Coming Soon', cursive;
     span {
       span {
-        color: $colBlue;
+        color: $colBlue !important;
       }
     }
 
