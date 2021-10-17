@@ -129,7 +129,6 @@ main {
   display: block;
   padding: 0;
   margin: 0 auto;
-  width: 90%;
   .btn {
     margin-top: 1rem;
   }
