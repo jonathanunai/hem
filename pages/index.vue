@@ -139,6 +139,10 @@ main {
   .page-inner {
     margin-top: 0;
   }
+  ul {
+  padding-left: 30px;
+}
+
   li {
     font-size: 1.5rem;
     margin-top: 12px;
@@ -165,6 +169,7 @@ main {
     width: 30px;
     cursor: pointer;
     transition: all 0.4s ease;
+    z-index: 6;
   }
   .refresh-icon {
     right: 52px;
