@@ -3,7 +3,7 @@ export default {
   target: 'static',
   ssr: false,
   server: {
-    port: 3044
+    port: 3044,
   },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -11,33 +11,39 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Colaborative shopping list' },
-      { name: 'format-detection', content: 'telephone=no' }
+      {
+        hid: 'description',
+        name: 'description',
+        content: 'Colaborative shopping list',
+      },
+      { name: 'format-detection', content: 'telephone=no' },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'preconnect', href: 'https://fonts.googleapis.com'},
-      { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: 'crossorigin'},
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap'},
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Coming+Soon&display=swap'}
-
-    ]
+      { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+      {
+        rel: 'preconnect',
+        href: 'https://fonts.gstatic.com',
+        crossorigin: 'crossorigin',
+      },
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap',
+      },
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Coming+Soon&display=swap',
+      },
+    ],
   },
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-    '~assets/css/main.scss'
-  ],
+  css: ['~assets/css/main.scss'],
   styleResources: {
-    scss: [
-      '~assets/scss/mixins.scss',
-      '~assets/scss/variables.scss'
-    ]
+    scss: ['~assets/scss/mixins.scss', '~assets/scss/variables.scss'],
   },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-    '~/plugins/firebase.js'
-  ],
+  plugins: ['~/plugins/firebase.js'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -60,7 +66,38 @@ export default {
     '@nuxt/content',
     '@nuxtjs/auth',
     '@nuxtjs/toast',
+    '@nuxtjs/i18n',
   ],
+  i18n: {
+    locales: [
+      {
+        code: 'en',
+        name: 'English',
+        file: 'en.json',
+      },
+      {
+        code: 'es',
+        name: 'Español',
+        file: 'es.json',
+      },
+      {
+        code: 'sv',
+        name: 'Svenska',
+        file: 'sv.json',
+      },
+    ],
+    defaultLocale: 'en',
+    vueI18n: {
+      fallbackLocale: 'en',
+    },
+    langDir: 'locales/',
+
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      redirectOn: 'root', // recommended
+    },
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
@@ -68,45 +105,46 @@ export default {
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
-      lang: 'en'
-    }
+      lang: 'en',
+    },
   },
 
   // Content module configuration: https://go.nuxtjs.dev/config-content
   content: {},
 
   router: {
-    middleware: ['auth']
+    middleware: ['auth'],
   },
   auth: {
     strategies: {
       google: {
-        client_id: "37049723745-3fkv14o86jki23ecrqhtueutqnu8nb9m.apps.googleusercontent.com",
-        redirect_uri: process.env.REDIRECT_URL || 'https://hem-app.com/login/'
-      }
+        client_id:
+          '37049723745-3fkv14o86jki23ecrqhtueutqnu8nb9m.apps.googleusercontent.com',
+        redirect_uri: process.env.REDIRECT_URL || 'https://hem-app.com/login/',
+      },
     },
     redirect: {
       login: '/login',
       logout: '/login',
       callback: '/login/',
-      home: '/'
+      home: '/',
     },
   },
   toast: {
     position: 'top-center',
     duration: '2000',
-    register: [ // Register custom toasts
+    register: [
+      // Register custom toasts
       {
         name: 'myerror',
         message: 'Oops...Something went wrong',
         options: {
-          type: 'error'
-        }
-      }
-    ]
+          type: 'error',
+        },
+      },
+    ],
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-  }
+  build: {},
 }

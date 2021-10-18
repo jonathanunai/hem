@@ -1,7 +1,7 @@
 <template>
   <div style="">
     <div style="position: relative">
-      <h3 v-if="filteredList.length > 0">The Shopping list</h3>
+      <h3 v-if="filteredList.length > 0">{{ $t('TheShoppingList') }}</h3>
       <h3 v-else style="padding-top: 1rem">Start a new shopping list!</h3>
     </div>
     <ul>
@@ -115,7 +115,7 @@ h3 {
   display: flex;
   position: relative;
   align-items: center;
-      justify-content: end;
+      justify-content: flex-end;
     padding-right: 10px;
   .plus {
     position: relative;
@@ -129,7 +129,8 @@ h3 {
     transform: rotate(45deg);
     background: transparent;
     font-weight: bold;
-    color: red;
+          color: $colLightBlue;
+
   }
   &.fixed-width {
     width: 55px;

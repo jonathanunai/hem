@@ -1,4 +1,4 @@
-import { doc, getDoc, updateDoc } from 'firebase/firestore'
+import { doc, getDoc, updateDoc, onSnapshot } from 'firebase/firestore'
 import { db } from '~/plugins/firebase.js'
 
 export const state = () => ({
@@ -11,6 +11,9 @@ export const state = () => ({
 })
 
 export const mutations = {
+  setList(state, payload) {
+    state.shoppingList = payload
+  },
   assignTeam(state, payload) {
     state.team = payload
   },
@@ -104,6 +107,7 @@ export const actions = {
   },
   LOADED({ commit }) {
     commit('changeLoading', false)
+    onSnapshot(doc(db, this.state.team, 'data'), (doc) => {commit('setList', doc.data().shoppingList)})
   },
   LOADING({ commit }) {
     commit('changeLoading', true)
@@ -128,7 +132,7 @@ export const actions = {
     })
   },
   async CROSSOUT({ commit }, item) {
-    commit('changeState', {item, state:'toggle'})
+    commit('changeState', { item, state: 'toggle' })
     const data = doc(db, this.state.team, 'data')
     await updateDoc(data, {
       shoppingList: this.state.shoppingList,
@@ -142,7 +146,7 @@ export const actions = {
     })
   },
   async DELETE_ITEM({ commit }, item) {
-    commit('changeState', {item, state:'inactive'})
+    commit('changeState', { item, state: 'inactive' })
     const data = doc(db, this.state.team, 'data')
     await updateDoc(data, {
       shoppingList: this.state.shoppingList,

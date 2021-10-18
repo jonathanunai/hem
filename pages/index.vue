@@ -93,6 +93,7 @@ export default {
     this.$nuxt.$on('logout', () => {
       this.logout()
     })
+
   },
   beforeDestroy() {
     this.$nuxt.$off('toClearList')
@@ -178,6 +179,7 @@ main {
     left: 38px;
     top: 20px;
     width: 28px;
+    display: none;
   }
   .buttons {
     display: none;
