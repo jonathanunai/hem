@@ -1,7 +1,7 @@
 <template>
   <section class="main-header-section">
     <header class="s-wrap" :class="type">
-      <div class="logo"><img src="/logo_new.png" alt="Hem - Domestic app" /></div>
+      <div class="logo"><img src="/img/logo-cuadrado.png" alt="Hem - Domestic app" /></div>
       <div style="clear: both"></div>
     </header>
   </section>

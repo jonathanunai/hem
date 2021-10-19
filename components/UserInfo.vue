@@ -2,12 +2,15 @@
   <div>
     <div class="user-menu">
       <span>Hi {{ $auth.user.name }}!</span>
-      <a
-        v-for="locale in availableLocales"
-        :key="locale.code"
-        @click.prevent.stop="$i18n.setLocale(locale.code)"
-        >{{ locale.name }}</a
-      >
+      <div>
+        <a
+          v-for="locale in availableLocales"
+          :key="locale.code"
+          href="#"
+          @click.prevent.stop="setLocale(locale.code)">
+          [{{ locale.code }}]
+          </a>
+      </div>
       <a v-if="!isShopping" href="#" @click.prevent="goShopping"
         >Go Shopping!</a
       >
@@ -37,6 +40,10 @@ export default {
       this.$nuxt.$emit('toClearList')
       this.$store.dispatch('TOGGLE_USERMENU')
     },
+    setLocale(l) {
+      this.$i18n.setLocale(l)
+      this.$store.dispatch('TOGGLE_USERMENU')
+    },
     showTeamCode() {
       this.$store.dispatch('TOGGLE_TEAMINFO')
       this.$store.dispatch('TOGGLE_USERMENU')
@@ -51,10 +58,10 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
-  background: $colLightBlue;
+  background: $colGold3;
   color: $colDarkGrey;
   padding: 0.5rem;
-  right: 10px;
+  right: 3rem;
   width: 300px;
   border-radius: 0.2rem;
   z-index: 2;

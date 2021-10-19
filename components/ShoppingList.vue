@@ -66,7 +66,7 @@ export default {
 <style lang="scss" scoped>
 ul {
   padding-left: 12px;
-  padding-top: 20px;
+  padding-top: 0.5rem;
 }
 li {
   margin-top: 4px;
@@ -77,7 +77,7 @@ li {
     cursor: pointer;
     text-align: left;
     span {
-      color: $colLightBlue;
+      color: $colGold3;
     }
   }
 }
@@ -108,15 +108,16 @@ li {
   animation-fill-mode: forwards;
 }
 h3 {
-  margin-top: 1rem;
+  margin-top: 2rem;
   font-size: 1.4rem;
+  color: $colGold4;
 }
 .buttons {
   display: flex;
   position: relative;
   align-items: center;
-      justify-content: flex-end;
-    padding-right: 10px;
+  justify-content: flex-end;
+  padding-right: 10px;
   .plus {
     position: relative;
     margin-right: 4px;
@@ -124,17 +125,26 @@ h3 {
     height: 20px;
     font-size: 0.9rem;
     right: unset;
+    &:hover {
+      background: $colGold5;
+    }
   }
   .delete-icon {
     transform: rotate(45deg);
     background: transparent;
     font-weight: bold;
-          color: $colLightBlue;
+    color: $colGold3;
+    border: 1px solid;
+    line-height: 18px;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      border: 1px solid red;
+            background: transparent;
 
+    }
   }
   &.fixed-width {
     width: 55px;
-
   }
 }
 </style>

@@ -3,7 +3,7 @@
     <div class="inner">
       <div>
         <div class="header-logo">
-          <img src="/logo_new.png" alt="Hem - Domestic app" />
+          <img src="/img/logo-cuadrado.png" alt="Hem - Domestic app" />
         </div>
       </div>
       <div>
@@ -13,7 +13,7 @@
       </div>
       <div class="user-info">
         <img :src="avatar" @click="$store.dispatch('TOGGLE_USERMENU')" />
-        <transition name="zoom">
+        <transition name="dropdown">
           <user-info v-if="showUserMenu" style="animation-duration: 0.2s"/>
         </transition>
         <transition name="fade">
@@ -49,12 +49,12 @@ export default {
 .page-header {
   // background: linear-gradient(90deg, #c02d28, #e66225);
   width: 100%;
+  max-width: calc(#{$appWidth} + 40px);
   color: #e6e6e6;
-  position: fixed;
   top: 0;
-  left: 0;
   z-index: 99;
   height: 60px;
+  margin: 0 auto;
   .inner {
     padding: 1rem;
     // background: rgba(0, 0, 0, 0.7);
@@ -81,7 +81,8 @@ export default {
   h2 {
     padding: 0;
     margin: 0;
-    color: $colLightBlue;
+    color: $colGold3
+;
     position: relative;
     font-size: 1rem;
     span {
@@ -91,7 +92,8 @@ export default {
         position: absolute;
         right: -8px;
         top: 40%;
-        color: $colLightBlue;
+        color: $colGold3
+;
         font-size: 0.86rem;
         transform: skew(-0.02turn, -14deg);
         @include media('>phone') {

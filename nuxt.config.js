@@ -86,6 +86,7 @@ export default {
         file: 'sv.json',
       },
     ],
+    strategy: 'no_prefix',
     defaultLocale: 'en',
     vueI18n: {
       fallbackLocale: 'en',

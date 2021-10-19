@@ -30,7 +30,7 @@ footer {
   align-items: center;
   justify-content: space-evenly;
   width: 100%;
-  max-width: 440px;
+  max-width: calc(#{$appWidth} + 40px);
   p {
     line-height: 1rem;
     display: inline-block;

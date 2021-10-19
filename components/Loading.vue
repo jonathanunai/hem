@@ -25,7 +25,7 @@
 .wave {
   width: 5px;
   height: 100px;
-  background: linear-gradient(45deg, cyan, #fff);
+  background: linear-gradient(455deg, $colGold3, #fff);
   margin: 10px;
   animation: wave 1s linear infinite;
   border-radius: 20px;

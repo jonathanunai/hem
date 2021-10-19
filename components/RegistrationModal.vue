@@ -11,14 +11,13 @@
               Can't think of any? try joining both you surenames ;)
             </div>
             <div class="flex-col">
-              <button
-                class="btn"
+              <btn
                 style="margin-bottom: 0.5rem"
                 :disabled="teamName.length < 3"
-                @click="createTeam"
+                @click.native="createTeam"
               >
                 Start a team!
-              </button>
+              </btn>
             </div>
             <h4>Or</h4>
             <div class="text-link" @click="hasACode = !hasACode">
@@ -32,14 +31,13 @@
             <h4>Enter your code to join a team! ;)</h4>
             <input v-model="code" type="text" placeholder="Enter your code" />
             <div class="flex-col">
-              <button
-                class="btn"
+              <btn
                 style="margin-bottom: 0.5rem"
                 :disabled="code.length < 3"
-                @click="joinTeam"
+                @click.native="joinTeam"
               >
                 Join a team!
-              </button>
+              </btn>
             </div>
             <div class="text-link" @click="hasACode = !hasACode">
               I don't hace a code

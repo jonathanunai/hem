@@ -7,7 +7,7 @@
         <div class="card--header"></div>
 
         <div class="card--content">
-          <btn :type="'round'" @click.native="login">
+          <btn @click.native="login">
             <div class="flex-center">
               <div class="mx-2">
                 <img src="~/static/Google.svg" width="20" />
@@ -111,19 +111,21 @@ export default {
   text-align: center;
   padding-top: 1rem;
   cursor: pointer;
-  color: $colLightBlue;
+  color: $colGold3
+;
 }
 .info-slide {
   position: fixed;
   top: 0;
   left: 0;
-  background: $colLightGrey;
-  color: $colDarkGrey;
+  background: $colGold1;
+  color: #fff;
   height: 100vh;
   width: 90%;
-  max-width: 400px;
+  max-width: 460px;
   z-index: 5;
   overflow-y: scroll;
+  padding: 0 1rem 1rem 0;
   .info-slide-inner {
   }
   box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
@@ -153,8 +155,10 @@ export default {
     margin-bottom: 2rem;
   }
   ul {
+
     span {
       font-weight: bold;
+      color: $colGold3;
     }
   }
 }

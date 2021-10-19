@@ -1,30 +1,30 @@
 <template>
-  <div class="plus">{{inverted ? '-' : '+'}}</div>
+  <div class="plus">{{ inverted ? '-' : '+' }}</div>
 </template>
 <script>
 export default {
   props: {
-    inverted: {type: Boolean, default: false}
-  }
+    inverted: { type: Boolean, default: false },
+  },
 }
 </script>
 <style lang="scss">
 .plus {
-    background: $colLightBlue;
-    border-radius: 50%;
-    color: $colDarkGrey;
-    cursor: pointer;
-    font-size: 23px;
-    font-weight: 700;
-    height: 34px;
-    width: 34px;
-    right: 38px;
-    position: absolute;
-    text-align: center;
-    top: 0;
-    &:hover {
-      background: #fff;
-      color: #3a3a3a;
-    }
+  background: $colGold3;
+  border-radius: 50%;
+  color: $colDarkGrey;
+  cursor: pointer;
+  font-size: 23px;
+  font-weight: 700;
+  height: 34px;
+  width: 34px;
+  right: 8px;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    background: $colGold5;
+  }
 }
 </style>

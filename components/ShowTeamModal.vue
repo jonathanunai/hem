@@ -4,7 +4,7 @@
       <div class="teamInfo flex-col">
         <h4>Share this code to your family/team members:</h4>
         <h2>{{ code }}</h2>
-        <button class="btn" @click="close">Close</button>
+        <btn @click.native="close">Close</btn>
       </div>
     </v-easy-dialog>
   </div>

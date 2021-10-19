@@ -10,7 +10,6 @@
     </vue-simple-suggest>
 
     <icon-add @click.native="add" />
-    <icon-refresh/>
 
   </div>
 </template>
@@ -52,7 +51,7 @@ export default {
   margin-top: 3rem;
 }
 .vue-simple-suggest.designed .input-wrapper  {
-  margin-right: 77px;
+  margin-right: 57px;
 }
 .vue-simple-suggest.designed .input-wrapper input {
 }

@@ -31,16 +31,15 @@
             <h4 style="padding-bottom: 2rem">Confirm deleting all the list!</h4>
 
             <div class="flex-col">
-              <button
-                class="btn"
+              <btn
                 style="margin-bottom: 0.5rem"
-                @click="clearListConfirmed"
+                @click.native="clearListConfirmed"
               >
                 Delete
-              </button>
-              <button class="btn" @click="confirmClearListModal = false">
+              </btn>
+              <btn class="btn" @click.native="confirmClearListModal = false">
                 Close
-              </button>
+              </btn>
             </div>
           </div>
         </v-easy-dialog>

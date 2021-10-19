@@ -3,7 +3,7 @@
 @import "~vue2-animate/src/sass/vue2-animate.scss";
 
 $animationDuration: 0.5s; // specify animation duration. Default value: 1s
-
+$appWidth: 460px;
 $breakpoints: (phone: 576px, tablet: 768px, desktop: 1024px);
 
 $colDarkGrey: #1a1a1d;
@@ -16,5 +16,10 @@ $colMidRed: #950740;
 $colRed: #c3073f;
 
 $colBlue: #0277BC;
-$colLightBlue: #94cbed;
+$colGold3: #94cbed;
 
+$colGold1:#a67c00;
+$colGold2:#bf9b30;
+$colGold3:#ffbf00	;
+$colGold4:#ffcf40;
+$colGold5:#ffdc73;
