@@ -1,24 +1,23 @@
 <template>
-  <div>
-    <div class="user-menu">
-      <span>Hi {{ $auth.user.name }}!</span>
-      <div>
-        <a
-          v-for="locale in availableLocales"
-          :key="locale.code"
-          href="#"
-          @click.prevent.stop="setLocale(locale.code)">
-          [{{ locale.code }}]
-          </a>
-      </div>
-      <a v-if="!isShopping" href="#" @click.prevent="goShopping"
-        >Go Shopping!</a
+  <div class="user-menu">
+    <span>Hi {{ $auth.user.name }}!</span>
+    <div>
+      <a
+        v-for="locale in availableLocales"
+        :key="locale.code"
+        href="#"
+        @click.prevent.stop="setLocale(locale.code)"
       >
-      <a v-else href="#" @click.prevent="goShopping">Stop Shopping!</a>
-      <a href="#" @click.prevent="clearList">Clear shopping list</a>
-      <a href="#" @click.prevent="showTeamCode">Show team code</a>
-      <a href="#" @click.prevent="$nuxt.$emit('logout')">Logout</a>
+        [{{ locale.code }}]
+      </a>
     </div>
+    <a v-if="!isShopping" href="#" @click.prevent="goShopping"
+      >{{ $t('GoShopping') }}!</a
+    >
+    <a v-else href="#" @click.prevent="goShopping">{{ $t('StopShopping') }}!</a>
+    <a href="#" @click.prevent="clearList">{{ $t('ClearShoppingList') }}</a>
+    <a href="#" @click.prevent="showTeamCode">{{ $t('ShowCode') }}</a>
+    <a href="#" @click.prevent="$nuxt.$emit('logout')">{{ $t('Logout') }}</a>
   </div>
 </template>
 <script>
@@ -61,7 +60,7 @@ export default {
   background: $colGold3;
   color: $colDarkGrey;
   padding: 0.5rem;
-  right: 3rem;
+  right: 1rem;
   width: 300px;
   border-radius: 0.2rem;
   z-index: 2;

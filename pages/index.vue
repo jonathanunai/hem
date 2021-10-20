@@ -22,6 +22,11 @@
     <page-header v-if="!goShopping" />
     <div class="page-inner">
       <main>
+                    <div style="position: relative">
+      <h3 v-if="filteredList.length > 0">{{ $t('TheShoppingList') }}</h3>
+      <h3 v-else style="padding-top: 1rem">Start a new shopping list!</h3>
+    </div>
+
         <transition name="fade">
           <new-item v-if="!goShopping" />
         </transition>
@@ -141,6 +146,10 @@ main {
   .page-inner {
     margin-top: 0;
     padding-top: 0;
+  }
+  h3 {
+            color: $colBlue !important;
+
   }
   ul {
     padding-left: 30px;

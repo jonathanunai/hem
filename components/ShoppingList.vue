@@ -1,9 +1,5 @@
 <template>
   <div style="">
-    <div style="position: relative">
-      <h3 v-if="filteredList.length > 0">{{ $t('TheShoppingList') }}</h3>
-      <h3 v-else style="padding-top: 1rem">Start a new shopping list!</h3>
-    </div>
     <ul>
       <transition-group name="bounce">
         <li v-for="item in filteredList" :key="item.item">

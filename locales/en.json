@@ -1,3 +1,32 @@
 {
-  "TheShoppingList": "The shopping list!"
+  "TheShoppingList": "The shopping list!",
+  "ClearList": "Clear list",
+  "ClearShoppingList": "Clear shopping list",
+  "GoShopping": "Go shopping",
+  "StopShopping": "Stop shopping",
+  "ShowCode": "Show team code",
+  "WeNeedToBuy": "We need to buy...?",
+  "Hi": "Hi",
+  "ShareCode": "Share this code to your family/team members:",
+  "Close": "Close",
+  "Delete": "Delete",
+  "Login": "Login",
+  "WhatIsHem": "What is Hem app?",
+  "Subheader": "The collaborative shopping list",
+  "q1": "What is Hem App?  ",
+  "a1": "It is the simplest, easiest and quickest way to have a collaborative and always updated shopping list.",
+  "q2": "Who should use it?",
+  "a2": "Hem App works with any team or family that wish to share a list",
+  "q3": "Is it free?",
+  "a3": "Hem App is completely free to use. Nice!",
+  "q4": "How does it work?",
+  "a4": "Use your google account to log in, choose a name for your team/family and voila! Start using your list.",
+  "q5": "Is it addictive?",
+  "a5": "Yes. Once you try it, you wont be able to live without it. Not joking.",
+  "q6": "Who did this?",
+  "a6": "Jonathan Unai, a programmer tired of reading his whatsapps looking for groceries at the supermarket. Now it is available to everyone.",
+  "ConfirmDeleting": "Confirm deleting all the list!",
+  "LoginUsingGoogle": "Login using your Google account.",
+  "Logout": "Logout."
+
 }

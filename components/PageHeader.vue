@@ -14,7 +14,7 @@
       <div class="user-info">
         <img :src="avatar" @click="$store.dispatch('TOGGLE_USERMENU')" />
         <transition name="dropdown">
-          <user-info v-if="showUserMenu" style="animation-duration: 0.2s"/>
+          <user-info v-if="showUserMenu" style="animation-duration: 0.2s" />
         </transition>
         <transition name="fade">
           <div
@@ -56,8 +56,8 @@ export default {
   height: 60px;
   margin: 0 auto;
   .inner {
-    padding: 1rem;
-    // background: rgba(0, 0, 0, 0.7);
+    padding: 0 1rem;
+    margin: 0.4rem;
     zoom: 1;
     display: flex;
     justify-content: space-between;
@@ -71,18 +71,19 @@ export default {
     }
   }
   .user-info {
+    position: relative;
     img {
       border-radius: 50%;
       cursor: pointer;
-      height: 60px;
-      padding: 6px;
+      height: 50px;
+      border: 4px solid $colGold2;
+      padding: 0;
     }
   }
   h2 {
     padding: 0;
     margin: 0;
-    color: $colGold3
-;
+    color: $colGold3;
     position: relative;
     font-size: 1rem;
     span {
@@ -92,8 +93,7 @@ export default {
         position: absolute;
         right: -8px;
         top: 40%;
-        color: $colGold3
-;
+        color: $colGold3;
         font-size: 0.86rem;
         transform: skew(-0.02turn, -14deg);
         @include media('>phone') {

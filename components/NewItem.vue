@@ -3,7 +3,7 @@
     <vue-simple-suggest
       v-model="item"
       :list="fullList"
-      placeholder="We need to buy...?"
+      :placeholder="$t('WeNeedToBuy')"
       :filter-by-query="true"
       @select="suggestionClicked"
     >
@@ -48,7 +48,7 @@ export default {
 <style lang="scss">
 .input-wrapper {
   position: relative;
-  margin-top: 3rem;
+  margin-top: 2rem;
 }
 .vue-simple-suggest.designed .input-wrapper  {
   margin-right: 57px;

@@ -1,8 +1,8 @@
 <template>
   <footer>
-    <btn @click.native="clearList">Clear list!</btn>
-    <p>Powered by<br />Unai.me</p>
-    <btn @click.native="goShopping">Go shopping!</btn>
+    <btn @click.native="clearList">{{ $t('ClearList') }}!</btn>
+    <p>by<br />Unai.me</p>
+    <btn @click.native="goShopping">{{ $t('GoShopping') }}!</btn>
   </footer>
 </template>
 <script>
@@ -21,16 +21,17 @@ export default {
 footer {
   clear: both;
   position: fixed;
-  height: 36px;
+  height: 46px;
   bottom: 0px;
-  padding: 0;
-  margin: 0;
+  padding: 0.4rem;
+    margin: 0rem;
   color: $colGrey;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   width: 100%;
   max-width: calc(#{$appWidth} + 40px);
+  background: $colGold2;
   p {
     line-height: 1rem;
     display: inline-block;
@@ -38,6 +39,11 @@ footer {
     margin: 0;
     text-align: center;
     font-size: 0.74rem;
+  }
+  button {
+    font-size: 0.74rem;
+    letter-spacing: 0.05em;
+    background: $colGold5;
   }
 }
 </style>

@@ -2,9 +2,9 @@
   <div>
     <v-easy-dialog v-model="show">
       <div class="teamInfo flex-col">
-        <h4>Share this code to your family/team members:</h4>
+        <h4>{{ $t('ShareCode') }}</h4>
         <h2>{{ code }}</h2>
-        <btn @click.native="close">Close</btn>
+        <btn @click.native="close">{{ $t('Close') }}</btn>
       </div>
     </v-easy-dialog>
   </div>

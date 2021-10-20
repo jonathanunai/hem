@@ -1,3 +1,33 @@
 {
-  "TheShoppingList": "Inköpslista!"
+  "TheShoppingList": "Inköpslista!",
+  "ClearList": "Tydlig lista",
+  "ClearShoppingList": "Tydlig inköpslista",
+  "GoShopping": "Gå och handla",
+  "StopShopping": "Sluta handla",
+  "ShowCode": "Visa lagkod",
+  "WeNeedToBuy": "Vi måste köpa...?",
+  "Hi": "Hej",
+  "ShareCode": "Dela den här koden med din familj/gruppmedlemmar:",
+  "Close": "Stänga",
+  "Delete": "Delete",
+  "Login": "Login",
+  "WhatIsHem": "Vad är Hem app?",
+  "Subheader": "Den gemensamma inköpslistan",
+  "q1": "What is Hem App?  ",
+  "a1": "It is the simplest, easiest and quickest way to have a collaborative and always updated shopping list.",
+  "q2": "Who should use it?",
+  "a2": "Hem App works with any team or family that wish to share a list",
+  "q3": "Is it free?",
+  "a3": "Hem App is completely free to use. Nice!",
+  "q4": "How does it work?",
+  "a4": "Use your google account to log in, choose a name for your team/family and voila! Start using your list.",
+  "q5": "Is it addictive?",
+  "a5": "Yes. Once you try it, you wont be able to live without it. Not joking.",
+  "q6": "Who did this?",
+  "a6": "Jonathan Unai, a programmer tired of reading his whatsapps looking for groceries at the supermarket. Now it is available to everyone.",
+  "ConfirmDeleting": "Bekräfta att radera hela listan!",
+  "LoginUsingGoogle": "Logga in med ditt Google -konto.",
+  "Logout": "Logout."
+
+
 }
