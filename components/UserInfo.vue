@@ -1,16 +1,18 @@
 <template>
   <div class="user-menu">
-    <span>Hi {{ $auth.user.name }}!</span>
-    <div>
-      <a
-        v-for="locale in availableLocales"
-        :key="locale.code"
-        href="#"
-        @click.prevent.stop="setLocale(locale.code)"
-      >
-        [{{ locale.code }}]
-      </a>
-    </div>
+    <span
+      >Hi {{ $auth.user.name }}!
+      <div>
+        <a
+          v-for="locale in availableLocales"
+          :key="locale.code"
+          href="#"
+          @click.prevent.stop="setLocale(locale.code)"
+        >
+          [{{ locale.code }}]
+        </a>
+      </div>
+    </span>
     <a v-if="!isShopping" href="#" @click.prevent="goShopping"
       >{{ $t('GoShopping') }}!</a
     >
@@ -69,10 +71,17 @@ export default {
     rgba(0, 0, 0, 0.22) 0px 15px 12px;
   span {
     border-bottom: 2px solid #fff;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
+    padding-bottom: 0.4rem;
     font-weight: bold;
     width: 100%;
     background: unset;
+    position: relative;
+    div {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
   }
   a {
     margin-bottom: 0.625rem;

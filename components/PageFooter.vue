@@ -1,8 +1,8 @@
 <template>
   <footer>
-    <btn @click.native="clearList">{{ $t('ClearList') }}!</btn>
+    <btn @click.native="clearList">{{ $t('ClearList') }}</btn>
     <p>by<br />Unai.me</p>
-    <btn @click.native="goShopping">{{ $t('GoShopping') }}!</btn>
+    <btn @click.native="goShopping">{{ $t('GoShopping') }}</btn>
   </footer>
 </template>
 <script>
