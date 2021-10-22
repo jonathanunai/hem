@@ -19,12 +19,12 @@
       <show-team-modal />
     </div>
 
-    <page-header v-if="!goShopping" />
-    <div class="page-inner">
+    <page-header v-if="!goShopping && team" />
+    <div v-if="team" class="page-inner">
       <main>
         <div style="position: relative">
           <h3 v-if="filteredList.length > 0">{{ $t('TheShoppingList') }}</h3>
-          <h3 v-else style="padding-top: 1rem">Start a new shopping list!</h3>
+          <h3 v-else style="padding-top: 1rem">{{ $t('StartShoppingList') }}</h3>
         </div>
 
         <transition name="fade">
@@ -51,7 +51,7 @@
       </main>
     </div>
 
-    <page-footer v-if="!goShopping" />
+    <page-footer v-if="!goShopping && team" />
   </div>
 </template>
 

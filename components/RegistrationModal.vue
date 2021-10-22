@@ -1,17 +1,17 @@
 <template>
   <div>
-    <v-easy-dialog v-model="notRegistered">
+    <v-easy-dialog v-model="notRegistered" fullscreen>
       <div class="registration flex-col">
         <transition name="lightSpeed" mode="out-in">
           <div v-if="!hasACode" key="1" style="animation-duration: 0.4s">
             <h4 @click="show = !show">{{ $t('RegisterFree') }}</h4>
-            <div>All you nead is a great name for your house team:</div>
+            <div>{{ $t('allYouNeed') }}</div>
             <div
               v-if="errorInTeamName"
               class="error"
               @click="hasACode = !hasACode"
             >
-              Are you trying to join a team?
+              {{ $t('errorTeam') }}
             </div>
 
             <input v-model="teamName" type="text" placeholder="Team name" />
@@ -24,18 +24,18 @@
                 :disabled="teamName.length < 3"
                 @click.native="createTeam"
               >
-                Start a team!
+                {{ $t('StartTeam') }}
               </btn>
             </div>
-            <h4>Or</h4>
+            <h4>{{ $t('Or') }}</h4>
             <div class="text-link" @click="hasACode = !hasACode">
-              Insert a code to join a team!
+              {{ $t('InsertCode') }}
             </div>
           </div>
           <div v-else key="2" style="animation-duration: 0.4s">
-            <h4>Enter your code to join a team! ;)</h4>
+            <h4>{{ $t('EnterCode') }}</h4>
             <div v-if="errorInCode" class="error">
-              The code does not match any team
+              {{ $t('ErrorCode') }}
             </div>
 
             <input v-model="code" type="text" placeholder="Enter your code" />
@@ -49,11 +49,11 @@
                 :disabled="code.length < 3"
                 @click.native="joinTeam"
               >
-                Join a team!
+                {{ $t('JoinTeam') }}
               </btn>
             </div>
             <div class="text-link" @click="hasACode = !hasACode">
-              I don't hace a code
+              {{ $t('NoCode') }}
             </div>
           </div>
         </transition>

@@ -1,5 +1,17 @@
 {
   "TheShoppingList": "The shopping list!",
+  "StartShoppingList": "Start a new shopping list!",
+  "allYouNeed": "All you nead is a great name for your house team",
+  "errorTeam": "Are you trying to join a team?",
+  "StartTeam": "Start a team!",
+  "Or": "Or",
+  "InsertCode": "Insert a code to join a team!",
+  "EnterCode": "Enter your code to join a team!",
+  "ErrorCode": "The code does not match any team",
+  "JoinTeam": "Join a Team",
+  "NoCode": "I don't hace a code",
+
+
   "ClearList": "Clear list",
   "ClearShoppingList": "Clear shopping list",
   "GoShopping": "Go shopping",

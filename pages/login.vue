@@ -12,11 +12,11 @@
               <div class="mx-2">
                 <img src="~/static/Google.svg" width="20" />
               </div>
-              <span>Login</span>
+              <span>{{ $t('Login') }}</span>
             </div>
           </btn>
-          <div class="subtext">Log in using your Google account.</div>
-          <div class="info-link" @click="showInfo = true">What is Hem app?</div>
+          <div class="subtext">{{ $t('LoginUsingGoogle') }}</div>
+          <div class="info-link" @click="showInfo = true">{{ $t('WhatIsHem') }}</div>
         </div>
       </div>
       <transition name="slideLeft">
@@ -29,43 +29,12 @@
           />
           <div class="info-slide-inner">
             <h1>Hem App</h1>
-            <h2>The collaborative shopping list</h2>
+            <h2>{{ $t('Subheader') }}</h2>
             <ul>
-              <li>
-                <span>What is Hem App?</span>
+              <li v-for='index in 6' :key='index'>
+                <span>{{ $t('q'+index) }}</span>
                 <p>
-                  It is the simplest, easiest and quickest way to have a
-                  collaborative and always updated shopping list.
-                </p>
-              </li>
-              <li>
-                <span>Who should use it?</span>
-                <p>
-                  Hem App works with any team or family that wish to share a
-                  list.
-                </p>
-              </li>
-              <li>
-                <span>Is it free?</span>
-                <p>Hem App is completely free to use. Nice!</p>
-              </li>
-              <li>
-                <span>How does it work?</span>
-                <p>Use your google account to log in, choose a name for your team/family and voila! Start using your list.</p>
-              </li>
-              <li>
-                <span>Is it addictive?</span>
-                <p>
-                  Yes. Once you try it, you wont be able to live without it. Not
-                  joking.
-                </p>
-              </li>
-              <li>
-                <span>Who did this?</span>
-                <p>
-                  Jonathan Unai, a programmer tired of reading his whatsapps
-                  looking for groceries at the supermarket. Now it is available
-                  to everyone.
+                  {{ $t('a'+index) }}
                 </p>
               </li>
             </ul>
