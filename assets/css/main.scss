@@ -143,6 +143,9 @@ input[type=text] {
  !important;
   color: #fff !important;
 }
+.v-easy-dialog--backdrop {
+  background-color: rgba(0,0,0,.8);
+}
 .v-easy-dialog--backdrop-btn {
   background: transparent;
 }

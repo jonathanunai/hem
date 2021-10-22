@@ -4,11 +4,19 @@
       <div class="registration flex-col">
         <transition name="lightSpeed" mode="out-in">
           <div v-if="!hasACode" key="1" style="animation-duration: 0.4s">
-            <h4 @click="show = !show">Register for free!</h4>
+            <h4 @click="show = !show">{{ $t('RegisterFree') }}</h4>
             <div>All you nead is a great name for your house team:</div>
+            <div
+              v-if="errorInTeamName"
+              class="error"
+              @click="hasACode = !hasACode"
+            >
+              Are you trying to join a team?
+            </div>
+
             <input v-model="teamName" type="text" placeholder="Team name" />
             <div class="help-text">
-              Can't think of any? try joining both you surenames ;)
+              {{ $t('HelpText1') }}
             </div>
             <div class="flex-col">
               <btn
@@ -25,11 +33,16 @@
             </div>
           </div>
           <div v-else key="2" style="animation-duration: 0.4s">
+            <h4>Enter your code to join a team! ;)</h4>
             <div v-if="errorInCode" class="error">
               The code does not match any team
             </div>
-            <h4>Enter your code to join a team! ;)</h4>
+
             <input v-model="code" type="text" placeholder="Enter your code" />
+            <div class="help-text">
+              {{ $t('HelpText2') }}
+            </div>
+
             <div class="flex-col">
               <btn
                 style="margin-bottom: 0.5rem"
@@ -57,6 +70,7 @@ import {
   query,
   where,
   getDocs,
+  getDoc,
 } from 'firebase/firestore'
 import { db } from '~/plugins/firebase.js'
 function makeid(length) {
@@ -83,22 +97,35 @@ export default {
       hasACode: false,
       show: false,
       errorInCode: false,
+      errorInTeamName: false,
     }
   },
   methods: {
     async createTeam() {
       if (this.teamName.length < 2) return
-
-      await setDoc(doc(db, 'teams', this.teamName), {
-        code: makeid(6),
-      })
-      await setDoc(doc(db, 'users', this.$auth.user.email), {
-        team: this.teamName,
-      })
-      await setDoc(doc(db, this.teamName, 'data'), {
-        shoppingList: {},
-      })
-      this.$store.dispatch('ASSIGN_TEAM', this.teamName)
+      const teamsRef = collection(db, 'teams')
+      const q = query(teamsRef, where('code', '==', this.teamName))
+      const querySnapshot = await getDocs(q)
+      if (querySnapshot.docs.length > 0) {
+        this.errorInTeamName = true
+      } else {
+        const teamRef = doc(db, 'teams', this.teamName)
+        const docSnap = await getDoc(teamRef)
+        if (docSnap.exists()) {
+          this.errorInTeamName = true
+        } else {
+          await setDoc(doc(db, 'teams', this.teamName), {
+            code: makeid(6),
+          })
+          await setDoc(doc(db, 'users', this.$auth.user.email), {
+            team: this.teamName,
+          })
+          await setDoc(doc(db, this.teamName, 'data'), {
+            shoppingList: {},
+          })
+          this.$store.dispatch('ASSIGN_TEAM', this.teamName)
+        }
+      }
     },
 
     async joinTeam() {
@@ -107,13 +134,16 @@ export default {
       const q = query(teamsRef, where('code', '==', this.code))
       const querySnapshot = await getDocs(q)
       if (querySnapshot.docs.length > 0) {
+        const team = querySnapshot.docs[0]
         this.$store.dispatch('LOADING')
-         await setDoc(doc(db, 'users', this.$auth.user.email), {
-          team: querySnapshot.docs[0].id,
+        console.log(team.id)
+        await setDoc(doc(db, 'users', this.$auth.user.email), {
+          team: team.id,
         })
-        this.$store.dispatch('ASSIGN_TEAM', querySnapshot.docs[0].id)
-        this.$store.dispatch('LOAD_TEAM', this.$auth.user.email).then(() => this.$store.dispatch('LOADED'))
-
+        this.$store.dispatch('ASSIGN_TEAM', team.id)
+        this.$store
+          .dispatch('LOAD_TEAM', this.$auth.user.email)
+          .then(() => this.$store.dispatch('LOADED'))
       } else {
         this.errorInCode = true
       }
@@ -135,18 +165,18 @@ export default {
     border-bottom: 2px solid $colGrey;
     max-width: 260px;
     margin: 0 auto;
-    margin-top: 12px;
+    margin-top: 24px;
   }
   .help-text {
-    color: $colBlue;
+    color: $colGold1;
     font-size: 0.7rem;
-    padding: 5px 0 12px;
+    padding: 5px 0 24px;
   }
   .btn {
     margin-top: 24px;
   }
   .text-link {
-    color: $colMidRed;
+    color: $colBlue;
     cursor: pointer;
   }
   .error {

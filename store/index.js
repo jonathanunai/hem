@@ -107,7 +107,8 @@ export const actions = {
   },
   LOADED({ commit }) {
     commit('changeLoading', false)
-    onSnapshot(doc(db, this.state.team, 'data'), (doc) => {commit('setList', doc.data().shoppingList)})
+    if (this.state.team)
+      onSnapshot(doc(db, this.state.team, 'data'), (doc) => {commit('setList', doc.data().shoppingList)})
   },
   LOADING({ commit }) {
     commit('changeLoading', true)

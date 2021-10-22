@@ -27,5 +27,8 @@
   "a6": "Jonathan Unai, un programador cansado de enredar en el whatsapp intentando aglutinar lo que se necesita comprar para la semana. Ahora está disponible para todos.",
   "ConfirmDeleting": "Confirma el borrado de la lista.",
   "LoginUsingGoogle": "Entra usando tu cuenta de Google.",
+  "RegisterFree": "¡Únete, es gratis!",
+  "HelpText1": "¿No se te ocurre nada? Prueba combinando vuestros apellidos",
+  "HelpText2": "Es una combinacion rara de letras y números",
   "Logout": "Salir."
 }

@@ -27,6 +27,9 @@
   "a6": "Jonathan Unai, a programmer tired of reading his whatsapps looking for groceries at the supermarket. Now it is available to everyone.",
   "ConfirmDeleting": "Confirm deleting all the list!",
   "LoginUsingGoogle": "Login using your Google account.",
+  "HelpText1": "Can't think of any? try joining both you surnames",
+  "HelpText2": "It should look like a weird combination of 6 letters and numbers",
+  "RegisterFree": "Register for free!",
   "Logout": "Logout."
 
 }
