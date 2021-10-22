@@ -7,6 +7,8 @@
   "Or": "...eller...",
   "InsertCode": "Infoga en kod för att gå med i ett team!",
   "EnterCode": "Ange din kod för att gå med i ett team!",
+  "CodePlaceholder": "Ange din kod",
+  "TeamPlaceholder": "Lagnamn",
   "ErrorCode": "Koden matchar inte något lag",
   "JoinTeam": "Gå med i ett team",
   "ClearList": "Tydlig lista",

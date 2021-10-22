@@ -14,7 +14,7 @@
               {{ $t('errorTeam') }}
             </div>
 
-            <input v-model="teamName" type="text" placeholder="Team name" />
+            <input v-model="teamName" type="text" :placeholder="$t('TeamPlaceholder')" />
             <div class="help-text">
               {{ $t('HelpText1') }}
             </div>
@@ -38,7 +38,7 @@
               {{ $t('ErrorCode') }}
             </div>
 
-            <input v-model="code" type="text" placeholder="Enter your code" />
+            <input v-model="code" type="text" :placeholder="$t('CodePlaceholder')" />
             <div class="help-text">
               {{ $t('HelpText2') }}
             </div>

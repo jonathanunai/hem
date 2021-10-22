@@ -7,6 +7,8 @@
   "Or": "Or",
   "InsertCode": "Insert a code to join a team!",
   "EnterCode": "Enter your code to join a team!",
+  "CodePlaceholder": "Enter your code",
+  "TeamPlaceholder": "Team name",
   "ErrorCode": "The code does not match any team",
   "JoinTeam": "Join a Team",
   "NoCode": "I don't hace a code",
