@@ -31,7 +31,6 @@ export default {
           list: { slug: slugify(this.listName), name: this.listName, list: [] }
         }
         this.$store.dispatch('ADD_LIST', newList)
-        console.log(newList)
         this.$emit('close')
       }
     },

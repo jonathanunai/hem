@@ -5,14 +5,14 @@
     </div>
     <ul>
       <transition-group name="bounce">
-        <li v-for="item in activeList.list" :key="item.item">
+        <li v-for="line in activeList.list" :key="line.item">
           <div class="flex-row">
-            <span :class="item.state">
-              {{ item.item }}
+            <span :class="line.state">
+              {{ line.item }}
             </span>
           </div>
           <div class="buttons">
-            <icon-add class="delete-icon" @click.native="deleteItem(item)" />
+            <icon-add class="delete-icon" @click.native="deleteItem(line)" />
           </div>
         </li>
       </transition-group>
