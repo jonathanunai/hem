@@ -10,7 +10,6 @@
     </vue-simple-suggest>
 
     <icon-add @click.native="add" />
-
   </div>
 </template>
 <script>
@@ -35,7 +34,7 @@ export default {
   methods: {
     add() {
       if (this.item)
-        this.$nuxt.$emit('add-item', { item: this.item, state: 'order', quantity: 1 })
+        this.$store.dispatch('ADD_ITEM', { item: this.item, state: 'order', quantity: 1 })
       this.item = ''
     },
     suggestionClicked(val) {
@@ -50,7 +49,7 @@ export default {
   position: relative;
   margin-top: 2rem;
 }
-.vue-simple-suggest.designed .input-wrapper  {
+.vue-simple-suggest.designed .input-wrapper {
   margin-right: 57px;
 }
 .vue-simple-suggest.designed .input-wrapper input {

@@ -1,7 +1,7 @@
 <template>
   <div class="user-menu">
     <span
-      >Hi {{ $auth.user.name }}!
+      >My account
       <div>
         <a
           v-for="locale in availableLocales"
@@ -13,11 +13,6 @@
         </a>
       </div>
     </span>
-    <a v-if="!isShopping" href="#" @click.prevent="goShopping"
-      >{{ $t('GoShopping') }}!</a
-    >
-    <a v-else href="#" @click.prevent="goShopping">{{ $t('StopShopping') }}!</a>
-    <a href="#" @click.prevent="clearList">{{ $t('ClearShoppingList') }}</a>
     <a href="#" @click.prevent="showTeamCode">{{ $t('ShowCode') }}</a>
     <a href="#" @click.prevent="$nuxt.$emit('logout')">{{ $t('Logout') }}</a>
   </div>
@@ -33,14 +28,6 @@ export default {
     },
   },
   methods: {
-    goShopping() {
-      this.$store.dispatch('TOGGLE_GO_SHOPPING')
-      this.$store.dispatch('TOGGLE_USERMENU')
-    },
-    clearList() {
-      this.$nuxt.$emit('toClearList')
-      this.$store.dispatch('TOGGLE_USERMENU')
-    },
     setLocale(l) {
       this.$i18n.setLocale(l)
       this.$store.dispatch('TOGGLE_USERMENU')
@@ -67,8 +54,8 @@ export default {
   border-radius: 0.2rem;
   z-index: 2;
   font-size: 1.1rem;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
-    rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  box-shadow: rgba(0, 0, 0, 0.6) 0px 19px 38px,
+    rgba(0, 0, 0, 0.44) 0px 15px 12px;
   span {
     border-bottom: 2px solid #fff;
     margin-bottom: 2rem;

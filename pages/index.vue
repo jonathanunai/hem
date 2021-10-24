@@ -1,8 +1,10 @@
 <template>
   <div class="page-wrapper" :class="goShopping ? 'goShopping' : ''">
+
     <transition name="fade">
       <loading v-if="loading" />
     </transition>
+
     <div v-if="goShopping">
       <icon-refresh />
       <img
@@ -12,25 +14,28 @@
         @click="stopShopping"
       />
     </div>
+
     <div v-if="!team && !loading" class="registration-wrapper">
       <registration-modal />
     </div>
+
     <div v-if="showTeamInfo" class="registration-wrapper">
       <show-team-modal />
     </div>
 
     <page-header v-if="!goShopping && team" />
     <div v-if="team" class="page-inner">
+
       <main>
         <div style="position: relative">
-          <h3 v-if="filteredList.length > 0">{{ $t('TheShoppingList') }}</h3>
-          <h3 v-else style="padding-top: 1rem">{{ $t('StartShoppingList') }}</h3>
+          <h3>
+            {{ (!isShoppingList) ? activeList.name : (filteredList.length > 0) ? $t('TheShoppingList') :  $t('StartShoppingList') }}
+          </h3>
         </div>
 
-        <transition name="fade">
-          <new-item v-if="!goShopping" />
-        </transition>
-        <shopping-list />
+        <shopping-list v-if="isShoppingList"/>
+        <simple-list v-else/>
+
         <v-easy-dialog v-model="confirmClearListModal">
           <div class="flex-col">
             <h4 style="padding-bottom: 2rem">Confirm deleting all the list!</h4>
@@ -48,10 +53,16 @@
             </div>
           </div>
         </v-easy-dialog>
+
+        <v-easy-dialog v-model="addListModal">
+            <add-list @close="addListModal = false"/>
+        </v-easy-dialog>
+
       </main>
     </div>
 
     <page-footer v-if="!goShopping && team" />
+
   </div>
 </template>
 
@@ -61,7 +72,7 @@ import { mapState } from 'vuex'
 
 export default {
   components: {
-    VEasyDialog,
+    VEasyDialog
   },
   asyncData({ $auth, store }) {
     store
@@ -71,28 +82,26 @@ export default {
   data() {
     return {
       confirmClearListModal: false,
+      addListModal: false,
     }
   },
   computed: {
-    ...mapState(['loading', 'shoppingList', 'showTeamInfo']),
+    ...mapState(['loading', 'activeList', 'shoppingList', 'showTeamInfo', 'goShopping', 'team']),
     filteredList() {
       return this.shoppingList.filter((i) =>
         ['crossed', 'order'].includes(i.state)
       )
     },
-    team() {
-      return this.$store.state.team
-    },
-    goShopping() {
-      return this.$store.state.goShopping
-    },
+    isShoppingList() {
+      return this.activeList.slug === 'ShoppingList'
+    }
   },
   created() {
     this.$nuxt.$on('toClearList', () => {
       this.confirmClearListModal = true
     })
-    this.$nuxt.$on('add-item', (val) => {
-      this.createItem(val)
+    this.$nuxt.$on('toAddList', () => {
+      this.addListModal = true
     })
     this.$nuxt.$on('logout', () => {
       this.logout()
@@ -100,7 +109,7 @@ export default {
   },
   beforeDestroy() {
     this.$nuxt.$off('toClearList')
-    this.$nuxt.$off('add-item')
+    this.$nuxt.$off('toAddList')
     this.$nuxt.$off('logout')
   },
 

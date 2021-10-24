@@ -3,7 +3,14 @@
     <div class="inner">
       <div>
         <div class="header-logo">
-          <img src="/img/logo-cuadrado.png" alt="Hem - Domestic app" />
+          <img
+            src="/img/logo-cuadrado.png"
+            alt="Hem - Domestic app"
+            @click="$store.dispatch('TOGGLE_MENU')"
+          />
+          <transition name="dropdown">
+            <main-menu v-if="showMenu" style="animation-duration: 0.2s" />
+          </transition>
         </div>
       </div>
       <div>
@@ -18,10 +25,13 @@
         </transition>
         <transition name="fade">
           <div
-            v-if="showUserMenu"
+            v-if="showUserMenu || showMenu"
             class="background"
             style="animation-delay: 0.3s; animation-duration: 0.3s"
-            @click="$store.dispatch('TOGGLE_USERMENU')"
+            @click="
+              showUserMenu
+                ? $store.dispatch('TOGGLE_USERMENU')
+                : $store.dispatch('TOGGLE_MENU')"
           ></div>
         </transition>
       </div>
@@ -41,6 +51,9 @@ export default {
     },
     showUserMenu() {
       return this.$store.state.showUserMenu
+    },
+    showMenu() {
+      return this.$store.state.showMenu
     },
   },
 }
@@ -69,6 +82,11 @@ export default {
         padding: 6px;
       }
     }
+  }
+  .header-logo {
+    position: relative;
+
+    cursor: pointer;
   }
   .user-info {
     position: relative;

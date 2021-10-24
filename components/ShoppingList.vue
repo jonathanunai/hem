@@ -1,5 +1,8 @@
 <template>
   <div style="">
+    <transition name="fade">
+      <new-item v-if="!goShopping" />
+    </transition>
     <ul>
       <transition-group name="bounce">
         <li v-for="item in filteredList" :key="item.item">
@@ -108,39 +111,5 @@ h3 {
   font-size: 1.4rem;
   color: $colGold4;
 }
-.buttons {
-  display: flex;
-  position: relative;
-  align-items: center;
-  justify-content: flex-end;
-  padding-right: 10px;
-  .plus {
-    position: relative;
-    margin-right: 4px;
-    width: 20px;
-    height: 20px;
-    font-size: 0.9rem;
-    right: unset;
-    &:hover {
-      background: $colGold5;
-    }
-  }
-  .delete-icon {
-    transform: rotate(45deg);
-    background: transparent;
-    font-weight: bold;
-    color: $colGold3;
-    border: 1px solid;
-    line-height: 18px;
-    transition: all 0.3s ease-in-out;
-    &:hover {
-      border: 1px solid red;
-            background: transparent;
 
-    }
-  }
-  &.fixed-width {
-    width: 55px;
-  }
-}
 </style>

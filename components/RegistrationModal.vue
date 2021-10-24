@@ -136,7 +136,6 @@ export default {
       if (querySnapshot.docs.length > 0) {
         const team = querySnapshot.docs[0]
         this.$store.dispatch('LOADING')
-        console.log(team.id)
         await setDoc(doc(db, 'users', this.$auth.user.email), {
           team: team.id,
         })

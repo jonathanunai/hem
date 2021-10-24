@@ -44,6 +44,10 @@
   "HelpText1": "Can't think of any? try joining both you surnames",
   "HelpText2": "It should look like a weird combination of 6 letters and numbers",
   "RegisterFree": "Register for free!",
-  "Logout": "Logout."
+  "Logout": "Logout.",
+
+
+
+  "AddList": "Create a new list"
 
 }
