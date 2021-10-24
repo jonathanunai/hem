@@ -197,7 +197,13 @@ main {
     display: none;
   }
   .buttons {
-    display: none;
+    .plus {
+      display: none;
+    }
+   img {
+     width: 30px;
+     height: 30px;
+   }
   }
 }
 </style>

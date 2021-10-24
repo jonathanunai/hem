@@ -7,13 +7,13 @@
       <transition-group name="bounce">
         <li v-for="item in filteredList" :key="item.item">
           <div class="flex-row">
-            <div v-if="!goShopping" class="buttons fixed-width">
+            <div class="buttons fixed-width">
               <icon-add
-                v-if="item.quantity > 1"
+                v-if="item.quantity > 1 && !goShopping"
                 :inverted="true"
                 @click.native="changeQuantity(item.item, 'decrease')"
               />
-              <icon-add @click.native="changeQuantity(item.item)" />
+              <icon-add v-if="!goShopping" @click.native="changeQuantity(item.item)" />
               <img v-if="item.avatar" :src="item.avatar" />
             </div>
             <span :class="item.state" @click="crossout(item.item)">
