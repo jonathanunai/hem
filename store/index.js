@@ -64,6 +64,7 @@ export const mutations = {
     const index = find(state, payload)
     if (index !== -1) {
       state.shoppingList[index].state = 'order'
+      state.shoppingList[index].avatar = this.$auth.user.picture
     } else {
       state.shoppingList.push(payload)
       state.shoppingList.sort((a, b) => a.item.localeCompare(b.item))

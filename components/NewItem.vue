@@ -30,11 +30,16 @@ export default {
     fullList() {
       return this.$store.state.shoppingList.map((el) => el.item)
     },
+    avatar() {
+      return this.$auth.user.picture
+        ? this.$auth.user.picture
+        : '/img/avatar.png'
+    },
   },
   methods: {
     add() {
       if (this.item)
-        this.$store.dispatch('ADD_ITEM', { item: this.item, state: 'order', quantity: 1 })
+        this.$store.dispatch('ADD_ITEM', { item: this.item, state: 'order', quantity: 1, avatar:  this.avatar})
       this.item = ''
     },
     suggestionClicked(val) {

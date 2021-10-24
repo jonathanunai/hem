@@ -14,6 +14,7 @@
                 @click.native="changeQuantity(item.item, 'decrease')"
               />
               <icon-add @click.native="changeQuantity(item.item)" />
+              <img v-if="item.avatar" :src="item.avatar" />
             </div>
             <span :class="item.state" @click="crossout(item.item)">
               {{ item.item }}
@@ -80,6 +81,14 @@ li {
     }
   }
 }
+img {
+  border-radius: 50%;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #bf9b30;
+  padding: 0;
+}
 @keyframes strike {
   0% {
     width: 0;
@@ -111,5 +120,4 @@ h3 {
   font-size: 1.4rem;
   color: $colGold4;
 }
-
 </style>
