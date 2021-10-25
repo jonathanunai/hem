@@ -11,6 +11,9 @@
   "TeamPlaceholder": "Lagnamn",
   "ErrorCode": "Koden matchar inte något lag",
   "JoinTeam": "Gå med i ett team",
+  "NoCode": "Nej, jag har ingen kod",
+  "MyAccount": "Mitt konto",
+
   "ClearList": "Tydlig lista",
   "ClearShoppingList": "Tydlig inköpslista",
   "GoShopping": "Gå och handla",
@@ -41,7 +44,7 @@
   "RegisterFree": "Registrera dig gratis!",
   "HelpText1": "Kan du inte komma på något? försök gå med båda dina efternamn",
   "HelpText2": "Det ska se ut som en konstig kombination av 6 bokstäver och siffror",
-  "Logout": "Logout."
+  "Logout": "Logout"
 
 
 }

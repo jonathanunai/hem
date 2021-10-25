@@ -1,7 +1,7 @@
 <template>
   <div class="user-menu">
-    <span
-      >My account
+    <div class="menu-header">
+      <span>{{ $t('MyAccount') }}</span>
       <div>
         <a
           v-for="locale in availableLocales"
@@ -12,9 +12,20 @@
           [{{ locale.code }}]
         </a>
       </div>
-    </span>
-    <a href="#" @click.prevent="showTeamCode">{{ $t('ShowCode') }}</a>
-    <a href="#" @click.prevent="$nuxt.$emit('logout')">{{ $t('Logout') }}</a>
+    </div>
+    <div class="menu-subheader">
+      {{ $t('Team') }}: <span>{{ team }}</span>
+    </div>
+    <ul class="menu-links">
+      <li>
+        <a href="#" @click.prevent="showTeamCode">{{ $t('ShowCode') }}</a>
+      </li>
+      <li>
+        <a href="#" @click.prevent="$nuxt.$emit('logout')">{{
+          $t('Logout')
+        }}</a>
+      </li>
+    </ul>
   </div>
 </template>
 <script>
@@ -25,6 +36,9 @@ export default {
     },
     availableLocales() {
       return this.$i18n.locales.filter((i) => i.code !== this.$i18n.locale)
+    },
+    team() {
+      return this.$store.state.team
     },
   },
   methods: {
@@ -48,7 +62,7 @@ export default {
   align-items: flex-end;
   background: $colGold3;
   color: $colDarkGrey;
-  padding: 0.5rem;
+  padding: 0rem;
   right: 1rem;
   width: 300px;
   border-radius: 0.2rem;
@@ -56,19 +70,28 @@ export default {
   font-size: 1.1rem;
   box-shadow: rgba(0, 0, 0, 0.6) 0px 19px 38px,
     rgba(0, 0, 0, 0.44) 0px 15px 12px;
-  span {
-    border-bottom: 2px solid #fff;
-    margin-bottom: 2rem;
-    padding-bottom: 0.4rem;
+  .menu-header {
     font-weight: bold;
     width: 100%;
     background: unset;
     position: relative;
-    div {
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .menu-subheader {
+    margin-bottom: 1rem;
+    background: $colGold4;
+    border: 2px $colGold5 solid;
+    width: 100%;
+    text-align: center;
+  }
+  .menu-links {
+    padding: 0.5rem;
+    margin: 0;
+    list-style: none;
+    text-align: right;
   }
   a {
     margin-bottom: 0.625rem;

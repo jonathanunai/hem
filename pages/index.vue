@@ -1,6 +1,9 @@
 <template>
-  <div class="page-wrapper" :class="goShopping ? 'goShopping' : ''">
-
+  <div
+    v-hammer:swipe.right="onSwipeRight"
+    class="page-wrapper"
+    :class="goShopping ? 'goShopping' : ''"
+  >
     <transition name="fade">
       <loading v-if="loading" />
     </transition>
@@ -24,17 +27,23 @@
     </div>
 
     <page-header v-if="!goShopping && team" />
-    <div v-if="team" class="page-inner">
-
+    <div v-if="team" v-hammer:swipe.left="onSwipeLeft" class="page-inner">
       <main>
         <div style="position: relative">
           <h3>
-            {{ (!isShoppingList) ? activeList.name : (filteredList.length > 0) ? $t('TheShoppingList') :  $t('StartShoppingList') }}
+            {{
+              !isShoppingList
+                ? activeList.name
+                : filteredList.length > 0
+                ? $t('TheShoppingList')
+                : $t('StartShoppingList')
+            }}
           </h3>
         </div>
-
-        <shopping-list v-if="isShoppingList"/>
-        <simple-list v-else/>
+        <transition mode="out-in" name="zoom">
+          <shopping-list v-if="isShoppingList" style="animation-duration: 0.2s"/>
+          <simple-list v-else style="animation-duration: 0.2s"/>
+        </transition>
 
         <v-easy-dialog v-model="confirmClearListModal">
           <div class="flex-col">
@@ -55,14 +64,12 @@
         </v-easy-dialog>
 
         <v-easy-dialog v-model="addListModal">
-            <add-list @close="addListModal = false"/>
+          <add-list @close="addListModal = false" />
         </v-easy-dialog>
-
       </main>
     </div>
 
     <page-footer v-if="!goShopping && team" />
-
   </div>
 </template>
 
@@ -72,7 +79,7 @@ import { mapState } from 'vuex'
 
 export default {
   components: {
-    VEasyDialog
+    VEasyDialog,
   },
   asyncData({ $auth, store }) {
     store
@@ -86,7 +93,14 @@ export default {
     }
   },
   computed: {
-    ...mapState(['loading', 'activeList', 'shoppingList', 'showTeamInfo', 'goShopping', 'team']),
+    ...mapState([
+      'loading',
+      'activeList',
+      'shoppingList',
+      'showTeamInfo',
+      'goShopping',
+      'team',
+    ]),
     filteredList() {
       return this.shoppingList.filter((i) =>
         ['crossed', 'order'].includes(i.state)
@@ -94,7 +108,7 @@ export default {
     },
     isShoppingList() {
       return this.activeList.slug === 'ShoppingList'
-    }
+    },
   },
   created() {
     this.$nuxt.$on('toClearList', () => {
@@ -123,6 +137,12 @@ export default {
     },
     stopShopping() {
       this.$store.dispatch('TOGGLE_GO_SHOPPING')
+    },
+    onSwipeLeft() {
+      this.$store.dispatch('TOGGLE_LIST', 'right')
+    },
+    onSwipeRight() {
+      this.$store.dispatch('TOGGLE_LIST', 'left')
     },
     async logout() {
       try {
@@ -200,10 +220,10 @@ main {
     .plus {
       display: none;
     }
-   img {
-     width: 30px;
-     height: 30px;
-   }
+    img {
+      width: 30px;
+      height: 30px;
+    }
   }
 }
 </style>

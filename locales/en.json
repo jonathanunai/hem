@@ -12,6 +12,7 @@
   "ErrorCode": "The code does not match any team",
   "JoinTeam": "Join a Team",
   "NoCode": "I don't hace a code",
+  "MyAccount": "My account",
 
 
   "ClearList": "Clear list",
@@ -44,7 +45,7 @@
   "HelpText1": "Can't think of any? try joining both you surnames",
   "HelpText2": "It should look like a weird combination of 6 letters and numbers",
   "RegisterFree": "Register for free!",
-  "Logout": "Logout.",
+  "Logout": "Logout",
 
 
 

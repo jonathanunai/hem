@@ -5,10 +5,10 @@ const find = (state, item) => {
   if (state.activeList.slug === 'ShoppingList') {
     return state.shoppingList.findIndex((x) => x.item === item.item)
   } else if (state.otherLists[state.activeList.slug]) {
-      return state.otherLists[state.activeList.slug].list.findIndex(
-        (x) => x.item === item.item
-      )
-    } else return -1
+    return state.otherLists[state.activeList.slug].list.findIndex(
+      (x) => x.item === item.item
+    )
+  } else return -1
 }
 
 export const state = () => ({
@@ -53,6 +53,30 @@ export const mutations = {
   },
   toggleGoShopping(state) {
     state.goShopping = !state.goShopping
+  },
+  toggleList(state, to) {
+    const listArray = Object.keys(state.otherLists)
+    if (listArray.length) {
+      if (state.activeList.slug === 'ShoppingList') {
+        state.activeList =
+          to === 'left'
+            ? state.otherLists[listArray[listArray.length-1]]
+            : state.otherLists[listArray[0]]
+      } else {
+        const pos = listArray.indexOf(state.activeList.slug)
+        if (
+          listArray.length === 1 ||
+          (pos === listArray.length -1 && to === 'right') ||
+          (pos === 0 && to === 'left')
+        )
+          state.activeList = initialState
+        else
+          state.activeList =
+            to === 'left'
+              ? state.otherLists[listArray[pos - 1]]
+              : state.otherLists[listArray[pos + 1]]
+      }
+    }
   },
   loadList(state, payload) {
     state.shoppingList = payload
@@ -164,6 +188,9 @@ export const actions = {
   },
   TOGGLE_LOADING({ commit }) {
     commit('toggleLoading')
+  },
+  TOGGLE_LIST({ commit }, to) {
+    commit('toggleList', to)
   },
   LOADED({ commit }) {
     commit('changeLoading', false)

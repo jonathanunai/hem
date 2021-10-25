@@ -44,7 +44,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  background: $colGold5;
+  background: $colGold3;
   color: $colDarkGrey;
   padding: 0.5rem;
   left: 1rem;
@@ -63,11 +63,6 @@ export default {
     width: 100%;
     background: unset;
     position: relative;
-    div {
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
   }
   a {
     margin-bottom: 0.625rem;

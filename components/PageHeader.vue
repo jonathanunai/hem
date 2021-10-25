@@ -1,22 +1,17 @@
 <template>
   <div class="page-header">
     <div class="inner">
+      <div style="position:relative">
+        <icon-hamburger @click.native="$store.dispatch('TOGGLE_MENU')" />
+        <transition name="dropdown">
+          <main-menu v-if="showMenu" style="animation-duration: 0.2s" />
+        </transition>
+      </div>
+
       <div>
         <div class="header-logo">
-          <img
-            src="/img/logo-cuadrado.png"
-            alt="Hem - Domestic app"
-            @click="$store.dispatch('TOGGLE_MENU')"
-          />
-          <transition name="dropdown">
-            <main-menu v-if="showMenu" style="animation-duration: 0.2s" />
-          </transition>
+          <img src="/img/logo-cuadrado.png" alt="Hem - Domestic app" />
         </div>
-      </div>
-      <div>
-        <h2>
-          <span>{{ team }}</span>
-        </h2>
       </div>
       <div class="user-info">
         <img :src="avatar" @click="$store.dispatch('TOGGLE_USERMENU')" />
@@ -41,9 +36,6 @@
 <script>
 export default {
   computed: {
-    team() {
-      return this.$store.state.team
-    },
     avatar() {
       return this.$auth.user.picture
         ? this.$auth.user.picture
