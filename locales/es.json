@@ -1,5 +1,6 @@
 {
   "TheShoppingList": "La lista de la compra",
+  "ShoppingList": "La lista de la compra",
   "StartShoppingList": "Empieza una nueva lista!",
   "allYouNeed": "Sólo necesitas un nombre guapo para tu equipo",
   "errorTeam": "¿Estás intentando unirte a un equipo ya existente?",
@@ -44,5 +45,8 @@
   "RegisterFree": "¡Únete, es gratis!",
   "HelpText1": "¿No se te ocurre nada? Prueba combinando vuestros apellidos",
   "HelpText2": "Es una combinacion rara de letras y números",
-  "Logout": "Salir"
+  "Logout": "Salir",
+  "Team": "Equipo",
+
+  "AddList": "Crear una nueva lista"
 }

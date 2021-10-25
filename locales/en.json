@@ -1,5 +1,6 @@
 {
   "TheShoppingList": "The shopping list!",
+  "ShoppingList": "The shopping list!",
   "StartShoppingList": "Start a new shopping list!",
   "allYouNeed": "All you nead is a great name for your house team",
   "errorTeam": "Are you trying to join a team?",
@@ -46,6 +47,7 @@
   "HelpText2": "It should look like a weird combination of 6 letters and numbers",
   "RegisterFree": "Register for free!",
   "Logout": "Logout",
+  "Team": "Team",
 
 
 

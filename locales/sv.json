@@ -1,5 +1,6 @@
 {
   "TheShoppingList": "Inköpslista!",
+  "ShoppingList": "Inköpslista!",
   "StartShoppingList": "Starta en ny inköpslista!",
   "allYouNeed": "Allt du behöver är ett bra namn för ditt huslag",
   "errorTeam": "Försöker du gå med i ett lag?",
@@ -44,7 +45,10 @@
   "RegisterFree": "Registrera dig gratis!",
   "HelpText1": "Kan du inte komma på något? försök gå med båda dina efternamn",
   "HelpText2": "Det ska se ut som en konstig kombination av 6 bokstäver och siffror",
-  "Logout": "Logout"
+  "Logout": "Logout",
 
+  "Team": "Team",
+
+  "AddList": "Skapa en ny lista"
 
 }
