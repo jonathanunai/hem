@@ -26,7 +26,7 @@
   "Close": "Cerrar",
   "Delete": "Borrar",
   "Login": "Entrar",
-  "WhatIsHem": "¿Qué es HemApp?",
+  "WhatIsHem": "FAQ",
   "Subheader": "La lista de la compra colaborativa",
   "q1": "¿Qué es HemApp? ",
   "a1": "Es la forma más simple, fácil, rápida e intuitiva de tener una lista colaborativa y siempra actualizada lista de la compra.",
@@ -48,5 +48,6 @@
   "Logout": "Salir",
   "Team": "Equipo",
 
+  "Quote1": "HemApp es sin duda el mejor descubrimiento del año. Tengo 7 listas que me ayudan a organizarme en casa, en el trabajo y con amigos. Simplemente genial.",
   "AddList": "Crear una nueva lista"
 }

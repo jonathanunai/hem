@@ -41,8 +41,11 @@
           </h3>
         </div>
         <transition mode="out-in" name="zoom">
-          <shopping-list v-if="isShoppingList" style="animation-duration: 0.2s"/>
-          <simple-list v-else style="animation-duration: 0.2s"/>
+          <shopping-list
+            v-if="isShoppingList"
+            style="animation-duration: 0.2s"
+          />
+          <simple-list v-else style="animation-duration: 0.2s" />
         </transition>
 
         <v-easy-dialog v-model="confirmClearListModal">
@@ -92,6 +95,11 @@ export default {
       addListModal: false,
     }
   },
+  head: {
+    bodyAttrs: {
+      class: 'app-page',
+    },
+  },
   computed: {
     ...mapState([
       'loading',
@@ -102,9 +110,11 @@ export default {
       'team',
     ]),
     filteredList() {
-      return this.shoppingList.filter((i) =>
-        ['crossed', 'order'].includes(i.state)
-      )
+      if (Array.isArray(this.shoppingList))
+        return this.shoppingList.filter((i) =>
+          ['crossed', 'order'].includes(i.state)
+        )
+      else return []
     },
     isShoppingList() {
       return this.activeList.slug === 'ShoppingList'
@@ -158,71 +168,107 @@ export default {
 </script>
 
 <style lang="scss">
-main {
-  display: block;
-  padding: 0;
-  margin: 0 auto;
-  .btn {
-    margin-top: 1rem;
-  }
+body.app-page {
+  background-color: $colDarkGrey;
+  color: #e6e6e6;
+  font-size: 16px;
+  line-height: 1.5;
+  font-family: 'Open Sans', sans-serif;
+  letter-spacing: 0;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
-.goShopping {
-  background: url(/img/paper.jpeg);
-  background-position: center top;
-  background-size: 100% auto;
-  color: $colDarkGrey;
+.app-page {
+  section {
+    padding-top: 50px;
+  }
+
+  .page-wrapper {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    align-items: center;
+  }
   .page-inner {
-    margin-top: 0;
-    padding-top: 0;
+    flex: 1 1 auto;
+    padding: 2rem 1rem;
+    width: 90%;
   }
-  h3 {
-    color: $colBlue !important;
-  }
-  ul {
-    padding-left: 30px;
+  @media (min-width: 768px) {
+    .page-inner {
+      max-width: $appWidth;
+    }
   }
 
-  li {
-    font-size: 1.5rem;
-    margin-top: 12px;
-    font-family: 'Coming Soon', cursive;
-    span {
+  main {
+    display: block;
+    padding: 0;
+    margin: 0 auto;
+    .btn {
+      margin-top: 1rem;
+    }
+  }
+  .goShopping {
+    background: url(/img/paper.jpeg);
+    background-position: center top;
+    background-size: 100% auto;
+    color: $colDarkGrey;
+    .page-inner {
+      margin-top: 0;
+      padding-top: 0;
+    }
+    h3 {
+      color: $colBlue !important;
+    }
+    ul {
+      padding-left: 30px;
+    }
+
+    li {
+      font-size: 1.5rem;
+      margin-top: 12px;
+      font-family: 'Coming Soon', cursive;
       span {
-        color: $colBlue !important;
+        span {
+          color: $colBlue !important;
+        }
       }
-    }
 
-    span.crossed {
-      color: $colGreyer;
-      &::after {
-        height: 3px;
-        background: $colDarkGrey;
+      span.crossed {
+        color: $colGreyer;
+        &::after {
+          height: 3px;
+          background: $colDarkGrey;
+        }
       }
     }
-  }
-  .close-icon,
-  .refresh-icon {
-    position: fixed;
-    top: 22px;
-    right: 12px;
-    width: 20px;
-    cursor: pointer;
-    transition: all 0.4s ease;
-    z-index: 6;
-  }
-  .refresh-icon {
-    left: 38px;
-    top: 20px;
-    width: 28px;
-    display: none;
-  }
-  .buttons {
-    .plus {
+    .close-icon,
+    .refresh-icon {
+      position: fixed;
+      top: 22px;
+      right: 12px;
+      width: 20px;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      z-index: 6;
+    }
+    .refresh-icon {
+      left: 38px;
+      top: 20px;
+      width: 28px;
       display: none;
     }
-    img {
-      width: 30px;
-      height: 30px;
+    .buttons {
+      .plus {
+        display: none;
+      }
+      img {
+        width: 30px;
+        height: 30px;
+      }
     }
   }
 }

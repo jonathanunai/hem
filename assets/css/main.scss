@@ -8,42 +8,16 @@
 ::after {
   box-sizing: border-box;
 }
+* {
+  margin: 0;
+}
 a {
   text-decoration: none;
   color: $colDarkGrey;
 }
 body {
-  background-color: $colDarkGrey;
-  color: #e6e6e6;
-  font-size: 16px;
-  line-height: 1.5;
   font-family: 'Open Sans', sans-serif;
-  letter-spacing: 0;
-  margin: 0;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-.page-wrapper {
-  flex: 1 1 auto;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  align-items: center;
-}
-.page-inner {
-  flex: 1 1 auto;
-  padding: 2rem 1rem;
-  width: 90%;
-}
-@media (min-width: 768px) {
-  .page-inner {
-    max-width: $appWidth;
-  }
-}
 
-section {
-  padding-top: 50px;
 }
 .s-wrap {
   margin-left: auto;

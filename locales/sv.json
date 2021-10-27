@@ -26,9 +26,9 @@
   "Close": "Stänga",
   "Delete": "Delete",
   "Login": "Login",
-  "WhatIsHem": "Vad är Hem app?",
+  "WhatIsHem": "FAQ",
   "Subheader": "Den gemensamma inköpslistan",
-  "q1": "What is Hem App?  ",
+  "q1": "Vad är Hem app?",
   "a1": "It is the simplest, easiest and quickest way to have a collaborative and always updated shopping list.",
   "q2": "Who should use it?",
   "a2": "Hem App works with any team or family that wish to share a list",
@@ -48,7 +48,7 @@
   "Logout": "Logout",
 
   "Team": "Team",
-
+  "Quote1": "HemApp är utan tvekan årets bästa upptäckt. Jag har 7 listor som hjälper mig att organisera mig hemma, på jobbet och med vänner. Helt enkelt fantastiskt.",
   "AddList": "Skapa en ny lista"
 
 }

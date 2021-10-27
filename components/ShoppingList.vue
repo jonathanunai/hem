@@ -13,7 +13,10 @@
                 :inverted="true"
                 @click.native="changeQuantity(item.item, 'decrease')"
               />
-              <icon-add v-if="!goShopping" @click.native="changeQuantity(item.item)" />
+              <icon-add
+                v-if="!goShopping"
+                @click.native="changeQuantity(item.item)"
+              />
               <img v-if="item.avatar" :src="item.avatar" />
             </div>
             <span :class="item.state" @click="crossout(item.item)">
@@ -39,9 +42,11 @@ export default {
   computed: {
     ...mapState(['shoppingList', 'goShopping']),
     filteredList() {
-      return this.shoppingList.filter((i) =>
-        ['crossed', 'order'].includes(i.state)
-      )
+      if (Array.isArray(this.shoppingList))
+        return this.shoppingList.filter((i) =>
+          ['crossed', 'order'].includes(i.state)
+        )
+      else return []
     },
   },
   methods: {

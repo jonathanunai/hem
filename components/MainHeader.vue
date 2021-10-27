@@ -34,6 +34,7 @@ export default {
       width: 100%;
       padding: 3rem;
       padding-bottom: 0;
+      max-width: 300px;
       img {
         width: 90%;
         margin: auto;
@@ -46,7 +47,7 @@ export default {
       }
       @include media('>desktop') {
         width: 50%;
-        max-width: 540px;
+        max-width: 440px;
       }
     }
   }
