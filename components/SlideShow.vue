@@ -2,14 +2,18 @@
   <div class="ss-wrapper">
     <div class="smartphone">
       <div class="smartphone--inner">
-        <vueper-slides :arrows="false" :bullets="false" :touchable="false" fixed-height="369px"  :autoplay="true"
->
+        <vueper-slides
+          :arrows="false"
+          :bullets="false"
+          :touchable="false"
+          fixed-height="369px"
+          :autoplay="true"
+        >
           <vueper-slide
             v-for="(slide, i) in slides"
             :key="i"
             :image="slide.image"
             :content="slide.content"
-
           />
         </vueper-slides>
       </div>
@@ -27,12 +31,11 @@ export default {
       slides: [
         {
           content: '<div style="height: 100%"></div>',
-          image: require('@/static/img/shopping-list-screenshot.png')
-
+          image: require('@/static/img/shopping-list-screenshot.png'),
         },
         {
-          title: 'second',
-          content: '<img src="/img/shopping-list-screenshot.png" alt="" />',
+          content: '<div style="height: 100%"></div>',
+          image: require('@/static/img/shopping-list-screenshot2.png'),
         },
       ],
     }
