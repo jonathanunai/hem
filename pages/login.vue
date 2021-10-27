@@ -67,12 +67,11 @@
             <p>{{ $t('Quote1') }}</p>
           </blockquote>
           <cite class="QuoteSection--cite">
-            <img class="QuoteSection--cite-company-logo" />
+            <img class="QuoteSection--cite-company-logo" src="/img/Pilar.png"/>
             <div class="QuoteSection--cite-details">
               <div class="QuoteSection--cite-name">Pilar Abollado</div>
               <div class="QuoteSection--cite-title">CEO Pikeria</div>
-            </div></cite
-          >
+            </div></cite>
         </div>
       </section>
       <transition name="slideLeft">
