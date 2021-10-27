@@ -27,7 +27,8 @@
     "vue-simple-suggest": "^1.11.2",
     "vue-suggestion": "^2.0.0",
     "vue2-animate": "^2.1.4",
-    "vue2-hammer": "^2.1.2"
+    "vue2-hammer": "^2.1.2",
+    "vueperslides": "^2.15.2"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.14.7",

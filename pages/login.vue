@@ -30,8 +30,8 @@
             </h1>
             <div class="HeroSection--description">
               <p>
-                HemApp is a webapp to create lists, such as a shopping list to
-                and multiple other lists between a team.
+                HemApp is a webapp to create lists, such as shopping lists and
+                other lists you can share as a team or family.
               </p>
             </div>
             <div class="HeroSection--actions">
@@ -83,6 +83,34 @@
             </div></cite
           >
         </div>
+      </section>
+      <section class="FreepriceSection">
+        <h2>Is it free?</h2>
+        <p>
+          <strong>Yes! Totally free.</strong> Create as much lists as you need
+          with unlimited items. Shopping list, movies to watch, don't loose
+          track of the series you want to watch, ToDo lists... The only limit is
+          your imagination.
+        </p>
+        <h3>This is cool! Is there a way to help the developer?</h3>
+        <p>
+          Sure! you can always buy him a coffee if like the app, just follow the
+          link:
+        </p>
+        <a href="https://www.buymeacoffee.com/unaime" target="_blank"
+          ><img
+            src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
+            alt="Buy Me A Coffee"
+            style="
+              height: 60px !important;
+              width: 217px !important;
+              margin: 12px 0;
+            "
+        /></a>
+        <p style="position: relative">
+          Cheers!
+          <img src="/img/party.png" alt="" class="party-icon" />
+        </p>
       </section>
       <transition name="slideLeft">
         <div v-if="showInfo" class="info-slide">
@@ -399,6 +427,20 @@ export default {
       }
     }
   }
+  .FreepriceSection {
+    padding: 40px 32px;
+    text-align: center;
+    h2 {
+      font-size: 2.25em;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    h3 {
+      font-size: 1.4em;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+  }
   .Footer {
     padding: 2.5em 3em 3em;
     box-shadow: inset 0 0.125em 0.5em -0.5em;
@@ -512,6 +554,12 @@ export default {
         color: $colGold3;
       }
     }
+  }
+  .party-icon {
+    height: 47px !important;
+    padding-top: 12px;
+    position: absolute;
+    top: -23px;
   }
 }
 </style>
