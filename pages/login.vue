@@ -5,7 +5,7 @@
         <div class="logo">
           <img src="/img/logo-cuadrado.png" alt="Hem - Domestic app" />
         </div>
-        <div style="display: flex; align-item: center;">
+        <div style="display: flex; align-item: center">
           <a href="https://www.buymeacoffee.com/unaime" target="_blank">
             <img
               src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
@@ -153,6 +153,13 @@
             </li>
             <li class="Footer--column-list-item">
               <a
+                href="https://www.buymeacoffee.com/unaime"
+                class="Link Link-without-underline Link-is-juicy"
+                >Buy me a coffee</a
+              >
+            </li>
+            <li class="Footer--column-list-item">
+              <a
                 href="https://www.unai.me"
                 class="Link Link-without-underline Link-is-juicy"
                 >Unai.me</a
@@ -220,8 +227,10 @@ export default {
       }
       .buyme {
         height: 36px;
-            box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
-            margin-right: 6px;
+        box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%),
+          0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+        margin-right: 6px;
+        border-radius: 6px;
       }
       .logo-buttons {
         display: flex;
