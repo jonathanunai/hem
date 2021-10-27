@@ -3,11 +3,14 @@
     <span> Hi {{ $auth.user.name }}!</span>
 
     <a href="#" @click.prevent="switchToList('ShoppingList')">{{ $t('ShoppingList') }}</a>
+
     <ul>
       <li v-for="(otherList, index) in otherLists" :key="index">
-            <a href="#" @click.prevent="switchToList(index)">{{ otherList.name }}</a>
+        <a href="#" @click.prevent="switchToList(index)">{{ otherList.name }}</a>
       </li>
     </ul>
+
+    <a href="https://www.buymeacoffee.com/unaime" _target="_blank">{{ $t('Buyme') }}</a>
 
     <a href="#" @click.prevent="addList">{{ $t('AddList') }}</a>
 
@@ -37,6 +40,7 @@ export default {
   },
 }
 </script>
+
 <style lang="scss">
 .main-menu {
   position: absolute;

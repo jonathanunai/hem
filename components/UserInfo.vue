@@ -92,6 +92,9 @@ export default {
     margin: 0;
     list-style: none;
     text-align: right;
+    li {
+      margin-bottom: 0.225rem;
+    }
   }
   a {
     margin-bottom: 0.625rem;

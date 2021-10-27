@@ -207,6 +207,9 @@ export default {
 .page-wrapper {
   color: rgb(29, 31, 32);
   background: rgb(255, 255, 255);
+  .square {
+    background: $colGold4;
+  }
   header {
     position: absolute;
     z-index: 10;
