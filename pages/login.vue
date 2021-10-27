@@ -5,9 +5,18 @@
         <div class="logo">
           <img src="/img/logo-cuadrado.png" alt="Hem - Domestic app" />
         </div>
-        <btn class="login-buttons" @click.native="login">
-          <span>{{ $t('Login') }}</span>
-        </btn>
+        <div style="display: flex; align-item: center;">
+          <a href="https://www.buymeacoffee.com/unaime" target="_blank">
+            <img
+              src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
+              alt="Buy Me A Coffee"
+              class="buyme"
+          /></a>
+
+          <btn class="login-buttons" @click.native="login">
+            <span>{{ $t('Login') }}</span>
+          </btn>
+        </div>
       </nav>
     </header>
 
@@ -67,11 +76,12 @@
             <p>{{ $t('Quote1') }}</p>
           </blockquote>
           <cite class="QuoteSection--cite">
-            <img class="QuoteSection--cite-company-logo" src="/img/Pilar.png"/>
+            <img class="QuoteSection--cite-company-logo" src="/img/Pilar.png" />
             <div class="QuoteSection--cite-details">
               <div class="QuoteSection--cite-name">Pilar Abollado</div>
               <div class="QuoteSection--cite-title">CEO Pikeria</div>
-            </div></cite>
+            </div></cite
+          >
         </div>
       </section>
       <transition name="slideLeft">
@@ -124,7 +134,7 @@
               <a
                 href="#"
                 class="Link Link-without-underline Link-is-juicy"
-                 @click.prevent="login"
+                @click.prevent="login"
                 >Login the app</a
               >
             </li>
@@ -207,6 +217,11 @@ export default {
         img {
           width: 50px;
         }
+      }
+      .buyme {
+        height: 36px;
+            box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+            margin-right: 6px;
       }
       .logo-buttons {
         display: flex;
