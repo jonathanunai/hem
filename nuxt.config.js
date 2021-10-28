@@ -95,6 +95,7 @@ export default {
     '@nuxtjs/eslint-module',
     '@nuxtjs/style-resources',
     '@nuxtjs/dotenv',
+    '@nuxtjs/google-analytics',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -150,6 +151,10 @@ export default {
 
   // Content module configuration: https://go.nuxtjs.dev/config-content
   content: {},
+
+  googleAnalytics: {
+    id: 'UA-4192453-32'
+  },
 
   router: {
     middleware: ['auth'],
