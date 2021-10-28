@@ -14,9 +14,34 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: 'Colaborative shopping list',
+        content:
+          'Colaboration tool to share lists like a shopping list, todo list or a film and series watchlist with team or family',
       },
-      { name: 'format-detection', content: 'telephone=no' },
+      { property: 'og:site_name', content: 'HemApp lists' },
+      { hid: 'og:type', property: 'og:type', content: 'website' },
+      {
+        hid: 'og:url',
+        property: 'og:url',
+        content: 'https://www.hem-app.com',
+      },
+      {
+        hid: 'og:title',
+        property: 'og:title',
+        content: 'HemApp - The ultimate shopping list',
+      },
+      {
+        hid: 'og:description',
+        property: 'og:description',
+        content:
+          'Colaboration tool to share lists like a shopping list, todo list or a film and series watchlist with team or family.',
+      },
+      {
+        hid: 'og:image',
+        property: 'og:image',
+        content: '/img/logo-share.png',
+      },
+      { property: 'og:image:width', content: '972' },
+      { property: 'og:image:height', content: '720' },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -43,7 +68,7 @@ export default {
   },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~/plugins/firebase.js','~/plugins/hammer.js'],
+  plugins: ['~/plugins/firebase.js', '~/plugins/hammer.js'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
