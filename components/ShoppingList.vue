@@ -1,8 +1,6 @@
 <template>
   <div style="">
-    <transition name="fade">
-      <new-item v-if="!goShopping" />
-    </transition>
+    <new-item v-if="!goShopping" />
     <ul>
       <transition-group name="bounce">
         <li v-for="item in filteredList" :key="item.item">
@@ -17,28 +15,55 @@
                 v-if="!goShopping"
                 @click.native="changeQuantity(item.item)"
               />
-              <img v-if="item.avatar" :src="item.avatar" />
+              <img
+                v-if="item.user && item.user.picture"
+                :src="item.user.picture"
+              />
             </div>
-            <span :class="item.state" @click="crossout(item.item)">
+            <span
+              :class="item.state"
+              @click.prevent.stop="handleClick($event, item)"
+            >
               {{ item.item }}
               <span v-if="item.quantity > 1"> ({{ item.quantity }})</span>
             </span>
           </div>
-          <div v-if="!goShopping" class="buttons">
-            <icon-add
-              class="delete-icon"
-              @click.native="deleteItem(item.item)"
-            />
-          </div>
         </li>
       </transition-group>
     </ul>
+    <div class="button-wrapper">
+      <btn v-if="!goShopping" @click.native="toShopping">{{
+        $t('GoShopping')
+      }}</btn>
+    </div>
+
+    <vue-simple-context-menu
+      :ref="'vueSimpleContextMenu'"
+      :element-id="'myUniqueId'"
+      :options="options"
+      @option-clicked="optionClicked"
+    />
   </div>
 </template>
 <script>
 import { mapState } from 'vuex'
+import VueSimpleContextMenu from 'vue-simple-context-menu'
 
 export default {
+  components: {
+    VueSimpleContextMenu,
+  },
+  data() {
+    return {
+      itemData: {},
+      showTooltip: false,
+      options: [
+        { name: this.$t('CrossoutItem'), action: 'cross' },
+        { name: this.$t('Removefromlist'), action: 'remove' },
+        { name: this.$t('Deletecompletely'), action: 'delete' },
+      ],
+    }
+  },
   computed: {
     ...mapState(['shoppingList', 'goShopping']),
     filteredList() {
@@ -51,7 +76,18 @@ export default {
   },
   methods: {
     crossout(item) {
+      console.log(item)
       this.$store.dispatch('CROSSOUT', item)
+    },
+    handleClick(event, item) {
+      if (this.goShopping) this.crossout(item)
+      else this.$refs.vueSimpleContextMenu.showMenu(event, item)
+    },
+    optionClicked(event) {
+      if (event.option.action === 'cross') this.crossout(event.item)
+      else if (event.option.action === 'remove')
+        this.deleteItem(event.item.item)
+      else if (event.option.action === 'delete') this.deleteItem(event.item)
     },
     deleteItem(item) {
       this.$store.dispatch('DELETE_ITEM', item)
@@ -64,6 +100,9 @@ export default {
       this.$store
         .dispatch('REFRESH_LIST')
         .then(() => this.$store.dispatch('LOADED'))
+    },
+    toShopping() {
+      this.$store.dispatch('TOGGLE_GO_SHOPPING')
     },
   },
 }
@@ -124,5 +163,23 @@ h3 {
   margin-top: 2rem;
   font-size: 1.4rem;
   color: $colGold4;
+}
+/* .tootltip {
+  position: absolute;
+  background: $colGold5;
+  border-radius: 0.4rem;
+  padding: 1.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  a {
+    width: 100%;
+    margin-bottom: 0.4rem;
+  }
+}
+ */
+.button-wrapper {
+  width: 100%;
+  text-align: center;
+  padding: 2rem 1rem;
 }
 </style>

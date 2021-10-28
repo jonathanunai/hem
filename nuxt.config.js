@@ -80,6 +80,7 @@ export default {
   plugins: [
     '~/plugins/firebase.js',
     '~/plugins/hammer.js',
+    '~/plugins/contextMenu.js',
     {
       src: './plugins/gtag.js',
       mode: 'client',

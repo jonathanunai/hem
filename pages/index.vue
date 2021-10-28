@@ -9,7 +9,6 @@
     </transition>
 
     <div v-if="goShopping">
-      <icon-refresh />
       <img
         src="/img/cross.png"
         alt="Close"
@@ -217,7 +216,7 @@ body.app-page {
     background-size: 100% auto;
     color: $colDarkGrey;
     .page-inner {
-      margin-top: 0;
+      margin-top: 1rem;
       padding-top: 0;
     }
     h3 {
@@ -245,21 +244,14 @@ body.app-page {
         }
       }
     }
-    .close-icon,
-    .refresh-icon {
+    .close-icon {
       position: fixed;
-      top: 22px;
-      right: 12px;
+      top: 29px;
+      right: 17px;
       width: 20px;
       cursor: pointer;
       transition: all 0.4s ease;
       z-index: 6;
-    }
-    .refresh-icon {
-      left: 38px;
-      top: 20px;
-      width: 28px;
-      display: none;
     }
     .buttons {
       .plus {

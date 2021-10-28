@@ -1,6 +1,7 @@
 import { doc, getDoc, updateDoc, onSnapshot } from 'firebase/firestore'
 import { db } from '~/plugins/firebase.js'
 const initialState = { slug: 'ShoppingList', name: 'Shopping list' }
+
 const find = (state, item) => {
   if (state.activeList.slug === 'ShoppingList') {
     return state.shoppingList.findIndex((x) => x.item === item.item)
@@ -9,6 +10,15 @@ const find = (state, item) => {
       (x) => x.item === item.item
     )
   } else return -1
+}
+const sortList = (state, list) => {
+  if (list === 'ShoppingList') {
+    state.shoppingList.sort((a, b) => {
+      if (a.state > b.state) return -1
+      if (a.state < b.state) return 1
+      return a.item.localeCompare(b.item)
+    })
+  }
 }
 
 export const state = () => ({
@@ -60,13 +70,13 @@ export const mutations = {
       if (state.activeList.slug === 'ShoppingList') {
         state.activeList =
           to === 'left'
-            ? state.otherLists[listArray[listArray.length-1]]
+            ? state.otherLists[listArray[listArray.length - 1]]
             : state.otherLists[listArray[0]]
       } else {
         const pos = listArray.indexOf(state.activeList.slug)
         if (
           listArray.length === 1 ||
-          (pos === listArray.length -1 && to === 'right') ||
+          (pos === listArray.length - 1 && to === 'right') ||
           (pos === 0 && to === 'left')
         )
           state.activeList = initialState
@@ -88,10 +98,10 @@ export const mutations = {
     const index = find(state, payload)
     if (index !== -1) {
       state.shoppingList[index].state = 'order'
-      state.shoppingList[index].avatar = this.$auth.user.picture
+      state.shoppingList[index].user = this.$auth.user
     } else {
       state.shoppingList.push(payload)
-      state.shoppingList.sort((a, b) => a.item.localeCompare(b.item))
+      sortList(state, 'ShoppingList')
     }
   },
   addOtherItem(state, item) {
@@ -118,6 +128,7 @@ export const mutations = {
       state.shoppingList[index].state =
         state.shoppingList[index].state === 'crossed' ? 'order' : 'crossed'
     else state.shoppingList[index].state = item.state
+    sortList(state, 'ShoppingList')
   },
   deleteItem(state, item) {
     const index = find(state, item)
@@ -225,7 +236,7 @@ export const actions = {
     })
   },
   async CROSSOUT({ commit }, item) {
-    commit('changeState', { item, state: 'toggle' })
+    commit('changeState', { item: item.item, state: 'toggle' })
     const data = doc(db, this.state.team, 'data')
     await updateDoc(data, {
       shoppingList: this.state.shoppingList,

@@ -39,7 +39,7 @@ export default {
   methods: {
     add() {
       if (this.item)
-        this.$store.dispatch('ADD_ITEM', { item: this.item, state: 'order', quantity: 1, avatar:  this.avatar})
+        this.$store.dispatch('ADD_ITEM', { item: this.item, state: 'order', quantity: 1, user:  this.$auth.user})
       this.item = ''
     },
     suggestionClicked(val) {

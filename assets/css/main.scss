@@ -181,7 +181,22 @@ input[type='text']  {
   align-items: center;
   color: $colGrey;
 }
-.card {
+main {
+  .vue-simple-context-menu {
+    background: $colGold5 ;
+  }
+  .vue-simple-context-menu__item {
+    color: $colDarkGrey ;
+    &:hover {
+      background: $colGold3 ;
+    }
+
+  }
+
+
+}
+
+/* .card {
   color: #e6e6e6;
   margin-top: 18px;
   overflow: hidden;
@@ -211,7 +226,7 @@ input[type='text']  {
     font-size: 0.8rem;
     text-align: right;
   }
-}
+} */
 
 /* tilt in animation */
 .tilt-in-enter,
