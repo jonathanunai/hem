@@ -3,7 +3,6 @@
     <transition name="fade">
       <loading v-if="loading" />
     </transition>
-    <h1>USSER: {{ $auth.user }}</h1>
     <header class="login-header">
       <nav class="nav">
         <div class="logo">
