@@ -1,5 +1,9 @@
 <template>
   <div class="page-wrapper">
+    <transition name="fade">
+      <loading v-if="loading" />
+    </transition>
+    <h1>USSER: {{ $auth.user }}</h1>
     <header class="login-header">
       <nav class="nav">
         <div class="logo">
@@ -208,46 +212,9 @@ export default {
       showInfo: false,
     }
   },
-  head: {
-    title: 'HemApp - The ultimate shopping list',
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      {
-        hid: 'description',
-        name: 'description',
-        content:
-          'Colaboration tool to share lists like a shopping list, todo list or a film and series watchlist with team or family',
-      },
-      { property: 'og:site_name', content: 'HemApp lists' },
-      { hid: 'og:type', property: 'og:type', content: 'website' },
-      {
-        hid: 'og:url',
-        property: 'og:url',
-        content: 'https://www.hem-app.com',
-      },
-      {
-        hid: 'og:title',
-        property: 'og:title',
-        content: 'HemApp - The ultimate shopping list',
-      },
-      {
-        hid: 'og:description',
-        property: 'og:description',
-        content:
-          'Colaboration tool to share lists like a shopping list, todo list or a film and series watchlist with team or family.',
-      },
-      {
-        hid: 'og:image',
-        property: 'og:image',
-        content: '/img/logo-share.png',
-      },
-      { property: 'og:image:width', content: '972' },
-      { property: 'og:image:height', content: '720' },
-    ],
-
-    bodyAttrs: {
-      class: 'login-page',
+  computed: {
+    loading() {
+      return this.$auth.user
     },
   },
   methods: {
@@ -261,10 +228,6 @@ export default {
         this.$toast.error('Oops... not working!')
       }
     },
-    stopShopping() {
-      this.$store.dispatch('TOGGLE_GO_SHOPPING')
-    },
-    slideInfo() {},
   },
 }
 </script>

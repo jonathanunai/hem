@@ -17,27 +17,36 @@ export default {
         content:
           'Colaboration tool to share lists like a shopping list, todo list or a film and series watchlist with team or family',
       },
-      { property: 'og:site_name', content: 'HemApp lists' },
+      {
+        hid: 'og:site_name',
+        property: 'og:site_name',
+        name: 'og:site_name',
+        content: 'HemApp lists',
+      },
       { hid: 'og:type', property: 'og:type', content: 'website' },
       {
         hid: 'og:url',
         property: 'og:url',
+        name: 'og:url',
         content: 'https://www.hem-app.com',
       },
       {
         hid: 'og:title',
         property: 'og:title',
+        name: 'og:title',
         content: 'HemApp - The ultimate shopping list',
       },
       {
         hid: 'og:description',
         property: 'og:description',
+        name: 'og:description',
         content:
           'Colaboration tool to share lists like a shopping list, todo list or a film and series watchlist with team or family.',
       },
       {
         hid: 'og:image',
         property: 'og:image',
+        name: 'og:image',
         content: '/img/logo-share.png',
       },
       { property: 'og:image:width', content: '972' },
