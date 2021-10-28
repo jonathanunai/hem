@@ -77,7 +77,14 @@ export default {
   },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~/plugins/firebase.js', '~/plugins/hammer.js'],
+  plugins: [
+    '~/plugins/firebase.js',
+    '~/plugins/hammer.js',
+    {
+      src: './plugins/gtag.js',
+      mode: 'client',
+    },
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -88,16 +95,12 @@ export default {
     '@nuxtjs/eslint-module',
     '@nuxtjs/style-resources',
     '@nuxtjs/dotenv',
-    '@nuxtjs/google-analytics',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
-    // https://go.nuxtjs.dev/content
     '@nuxt/content',
     '@nuxtjs/auth',
     '@nuxtjs/toast',
@@ -183,8 +186,4 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
-  googleAnalytics: {
-    id: 'G-5LTTDHLH2N'
-  },
-
 }
