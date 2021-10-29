@@ -253,6 +253,7 @@ export default {
         margin-right: auto;
         img {
           width: 50px;
+          height: 50px;
         }
       }
       .buyme {
