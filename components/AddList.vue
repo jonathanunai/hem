@@ -7,8 +7,8 @@
         shopping list", "House TODO list", etc...
       </p>
       <input v-model="listName" type="text"/>
-      <btn style="margin-bottom: 0.5rem" @click.native="create"> Create </btn>
-      <btn class="btn" @click.native="$emit('close')"> Close </btn>
+      <btn @click.native="create"> Create </btn>
+      <btn @click.native="$emit('close')"> Close </btn>
     </div>
   </div>
 </template>
@@ -37,3 +37,16 @@ export default {
   },
 }
 </script>
+<style lang="scss" scoped>
+p {
+  padding: 0 1rem 1rem;
+}
+input {
+  box-sizing: border-box;
+  margin: 0;
+  margin-bottom: 1rem;
+}
+button {
+ margin: 0.4rem 0;
+}
+</style>

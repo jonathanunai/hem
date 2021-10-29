@@ -87,7 +87,7 @@ export default {
       if (event.option.action === 'cross') this.crossout(event.item)
       else if (event.option.action === 'remove')
         this.deleteItem(event.item.item)
-      else if (event.option.action === 'delete') this.deleteItem(event.item)
+      else if (event.option.action === 'delete') this.$store.dispatch('HARD_DELETE_ITEM', event.item.item)
     },
     deleteItem(item) {
       this.$store.dispatch('DELETE_ITEM', item)

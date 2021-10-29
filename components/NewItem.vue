@@ -6,6 +6,7 @@
       :placeholder="$t('WeNeedToBuy')"
       :filter-by-query="true"
       @select="suggestionClicked"
+      @keyup.enter="add"
     >
     </vue-simple-suggest>
 
@@ -23,7 +24,6 @@ export default {
   data() {
     return {
       item: '',
-      items: [],
     }
   },
   computed: {
@@ -39,13 +39,19 @@ export default {
   methods: {
     add() {
       if (this.item)
-        this.$store.dispatch('ADD_ITEM', { item: this.item, state: 'order', quantity: 1, user:  this.$auth.user})
-      this.item = ''
+        this.$store
+          .dispatch('ADD_ITEM', {
+            item: this.item,
+            state: 'order',
+            quantity: 1,
+            user: this.$auth.user,
+          })
+          .then(() => (this.item = ''))
     },
     suggestionClicked(val) {
       this.item = val
       this.add()
-    }
+    },
   },
 }
 </script>

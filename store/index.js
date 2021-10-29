@@ -136,6 +136,10 @@ export const mutations = {
       state.otherLists[state.activeList.slug].list.splice(index, 1)
     }
   },
+  hardDelete(state, item) {
+    const index = find(state, item)
+    state.shoppingList.splice(index, 1)
+  },
   changeQuantity(state, item) {
     const index = find(state, item)
     if (index !== -1) {
@@ -255,6 +259,14 @@ export const actions = {
     await updateDoc(data, {
       shoppingList: this.state.shoppingList,
     })
+  },
+  async HARD_DELETE_ITEM({ commit }, item) {
+    commit('hardDelete', { item })
+    const data = doc(db, this.state.team, 'data')
+    await updateDoc(data, {
+      shoppingList: this.state.shoppingList,
+    })
+
   },
   async DELETE_OTHER_ITEM({ commit }, item) {
     commit('deleteItem', item)
