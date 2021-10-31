@@ -1,5 +1,5 @@
 <template>
-  <div class="plus">{{ inverted ? '-' : '+' }}</div>
+  <div class="plus" >{{ inverted ? '-' : '+' }}</div>
 </template>
 <script>
 export default {
