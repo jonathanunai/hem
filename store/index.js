@@ -88,11 +88,14 @@ export const mutations = {
       }
     }
   },
-  loadList(state, payload) {
-    state.shoppingList = payload
-  },
-  loadOtherLists(state, payload) {
-    state.otherLists = payload
+  loadLists(state, payload) {
+    state.shoppingList = payload.shoppingList
+    const listArray = Object.keys(payload.otherLists)
+    if (listArray.length) {
+      listArray.forEach((item) =>
+        this._vm.$set(state.otherLists, item, payload.otherLists[item])
+      )
+    }
   },
   addItem(state, payload) {
     const index = find(state, payload)
@@ -107,8 +110,19 @@ export const mutations = {
   addOtherItem(state, item) {
     const index = find(state, item)
     if (index !== -1) {
-      state.otherLists[state.activeList.slug].list[index].state = 'order'
-      state.otherLists[state.activeList.slug].list[index].user = this.$auth.user
+      this._vm.$set(
+        state.otherLists[state.activeList.slug].list[index],
+        'state',
+        'order'
+      )
+      this._vm.$set(
+        state.otherLists[state.activeList.slug].list[index],
+        'user',
+        this.$auth.user
+      )
+
+      // state.otherLists[state.activeList.slug].list[index].state = 'order'
+      // state.otherLists[state.activeList.slug].list[index].user = this.$auth.user
     } else {
       state.otherLists[state.activeList.slug].list.push(item)
       state.otherLists[state.activeList.slug].list.sort((a, b) =>
@@ -172,10 +186,7 @@ export const actions = {
       const docRef2 = doc(db, team, 'data')
       const docSnap2 = await getDoc(docRef2)
       if (docSnap2.exists()) {
-        commit('loadList', docSnap2.data().shoppingList)
-        if (docSnap2.data().otherLists) {
-          commit('loadOtherLists', docSnap2.data().otherLists)
-        }
+        commit('loadLists', docSnap2.data())
       } else {
         console.log('No such document!')
       }
@@ -189,7 +200,7 @@ export const actions = {
   async REFRESH_LIST({ commit }) {
     const docRef = doc(db, this.state.team, 'data')
     const docSnap = await getDoc(docRef)
-    if (docSnap.exists()) commit('loadList', docSnap.data().shoppingList)
+    if (docSnap.exists()) commit('loadLists', docSnap.data())
     else console.log('No such document!')
     return new Promise(function (resolve, reject) {
       resolve('Refreshed')

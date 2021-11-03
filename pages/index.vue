@@ -149,6 +149,7 @@ export default {
     },
     onSwipeLeft() {
       this.$store.dispatch('TOGGLE_LIST', 'right')
+      this.$store.dispatch('REFRESH_LIST')
     },
     onSwipeRight() {
       this.$store.dispatch('TOGGLE_LIST', 'left')
@@ -185,16 +186,22 @@ body.app-page {
   }
 
   .page-wrapper {
-    flex: 1 1 auto;
     display: flex;
+    flex-flow: column;
     flex-direction: column;
     min-height: 100vh;
+    height: 100%;
     align-items: center;
+    overflow: hidden;
   }
   .page-inner {
     flex: 1 1 auto;
     padding: 2rem 1rem;
+    padding-bottom: 46px;
     width: 90%;
+    max-height: 100%;
+        overflow: hidden;
+
   }
   @media (min-width: 768px) {
     .page-inner {

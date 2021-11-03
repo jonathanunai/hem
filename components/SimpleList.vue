@@ -5,7 +5,7 @@
     </div>
     <ul>
       <transition-group name="bounce">
-        <li v-for="line in activeList.list" :key="line.item">
+        <li v-for="line in list" :key="line.item">
           <div class="flex-row">
             <img
               v-if="line.user && line.user.picture"
@@ -36,7 +36,16 @@ export default {
   },
   computed: {
     ...mapState(['loading', 'activeList', 'goShopping']),
+    list() {
+      return this.activeList.list
+    },
   },
+    watch: {
+    list(activeList) {
+      console.log(activeList)
+    },
+  },
+
   methods: {
     add() {
       if (this.item)
@@ -49,7 +58,11 @@ export default {
       this.item = ''
     },
     crossout(item) {
+      console.log(this.list[0].state)
       this.$store.dispatch('CROSSOUT', item)
+
+      console.log(this.list[0].state)
+
     },
     deleteItem(item) {
       this.$store.dispatch('DELETE_OTHER_ITEM', item)
@@ -80,9 +93,13 @@ export default {
   .plus {
     top: 6px;
   }
+  .delete-icon {
+    top: 0px;
+  }
   .input-wrap {
     position: relative;
     margin-top: 2rem;
+    margin-bottom: 1rem;
     padding-right: 5rem;
   }
 }
