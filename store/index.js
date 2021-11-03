@@ -11,8 +11,8 @@ const find = (state, item) => {
     )
   } else return -1
 }
-const sortList = (state, list) => {
-  if (list === 'ShoppingList') {
+const sortList = (state) => {
+  if (state.activeList.slug === 'ShoppingList') {
     state.shoppingList.sort((a, b) => {
       if (a.state > b.state) return -1
       if (a.state < b.state) return 1
@@ -101,12 +101,15 @@ export const mutations = {
       state.shoppingList[index].user = this.$auth.user
     } else {
       state.shoppingList.push(payload)
-      sortList(state, 'ShoppingList')
+      sortList(state)
     }
   },
   addOtherItem(state, item) {
     const index = find(state, item)
-    if (index === -1) {
+    if (index !== -1) {
+      state.otherLists[state.activeList.slug].list[index].state = 'order'
+      state.otherLists[state.activeList.slug].list[index].user = this.$auth.user
+    } else {
       state.otherLists[state.activeList.slug].list.push(item)
       state.otherLists[state.activeList.slug].list.sort((a, b) =>
         a.item.localeCompare(b.item)
@@ -124,11 +127,19 @@ export const mutations = {
   },
   changeState(state, item) {
     const index = find(state, item)
-    if (item.state === 'toggle')
-      state.shoppingList[index].state =
-        state.shoppingList[index].state === 'crossed' ? 'order' : 'crossed'
-    else state.shoppingList[index].state = item.state
-    sortList(state, 'ShoppingList')
+    if (state.activeList.slug === 'ShoppingList') {
+      if (item.state === 'toggle')
+        state.shoppingList[index].state =
+          state.shoppingList[index].state === 'crossed' ? 'order' : 'crossed'
+      else state.shoppingList[index].state = item.state
+    } else {
+      state.otherLists[state.activeList.slug].list[index].state =
+        state.otherLists[state.activeList.slug].list[index].state === 'crossed'
+          ? 'order'
+          : 'crossed'
+    }
+
+    sortList(state)
   },
   deleteItem(state, item) {
     const index = find(state, item)
@@ -242,9 +253,15 @@ export const actions = {
   async CROSSOUT({ commit }, item) {
     commit('changeState', { item: item.item, state: 'toggle' })
     const data = doc(db, this.state.team, 'data')
-    await updateDoc(data, {
-      shoppingList: this.state.shoppingList,
-    })
+    if (this.state.activeList.slug === 'ShoppingList') {
+      await updateDoc(data, {
+        shoppingList: this.state.shoppingList,
+      })
+    } else {
+      await updateDoc(data, {
+        otherLists: this.state.otherLists,
+      })
+    }
   },
   async CHANGE_QUANTITY({ commit }, item) {
     commit('changeQuantity', item)
@@ -266,7 +283,6 @@ export const actions = {
     await updateDoc(data, {
       shoppingList: this.state.shoppingList,
     })
-
   },
   async DELETE_OTHER_ITEM({ commit }, item) {
     commit('deleteItem', item)

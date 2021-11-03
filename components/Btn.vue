@@ -42,12 +42,12 @@ export default {
 }
 .square {
   border-radius: 4px;
-  background: $colGold2;
+  background: $colGold3;
   height: 36px;
   min-width: 64px;
   padding: 0 16px;
   &:hover {
-      background: $colGold3;
+      background: $colGold4;
 
   }
 }

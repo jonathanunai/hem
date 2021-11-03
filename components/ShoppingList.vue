@@ -3,8 +3,8 @@
     <new-item v-if="!goShopping" />
     <ul>
       <transition-group name="bounce">
-        <li v-for="item in filteredList" :key="item.item">
-          <div class="flex-row">
+        <li v-for="item in filteredList" :key="item.item" :class="activeItem === item.item ? 'active' : ''">
+          <div class="flex-row" >
             <div class="buttons fixed-width">
               <icon-add
                 v-if="item.quantity > 1 && !goShopping"
@@ -18,6 +18,7 @@
               <img
                 v-if="item.user && item.user.picture"
                 :src="item.user.picture"
+                class="itemUserPic"
               />
             </div>
             <span
@@ -42,6 +43,7 @@
       :element-id="'myUniqueId'"
       :options="options"
       @option-clicked="optionClicked"
+      @menu-closed="activeItem=''"
     />
   </div>
 </template>
@@ -57,6 +59,7 @@ export default {
     return {
       itemData: {},
       showTooltip: false,
+      activeItem: '',
       options: [
         { name: this.$t('CrossoutItem'), action: 'cross' },
         { name: this.$t('Removefromlist'), action: 'remove' },
@@ -76,12 +79,14 @@ export default {
   },
   methods: {
     crossout(item) {
-      console.log(item)
       this.$store.dispatch('CROSSOUT', item)
     },
     handleClick(event, item) {
       if (this.goShopping) this.crossout(item)
-      else this.$refs.vueSimpleContextMenu.showMenu(event, item)
+      else  {
+        this.activeItem = item.item
+        this.$refs.vueSimpleContextMenu.showMenu(event, item)
+      }
     },
     optionClicked(event) {
       if (event.option.action === 'cross') this.crossout(event.item)
@@ -117,6 +122,8 @@ li {
   font-size: 1.223rem;
   display: flex;
   justify-content: space-between;
+  transition: all 0.2s ease-in-out;
+
   span {
     cursor: pointer;
     text-align: left;
@@ -124,40 +131,11 @@ li {
       color: $colGold3;
     }
   }
-}
-img {
-  border-radius: 50%;
-  cursor: pointer;
-  width: 20px;
-  height: 20px;
-  border: 1px solid #bf9b30;
-  padding: 0;
-}
-@keyframes strike {
-  0% {
-    width: 0;
+  &.active {
+    background: $colGold2;
+    color: $colGold5;
+    transition: all 0.4s ease-in-out;
   }
-  100% {
-    width: 100%;
-  }
-}
-.crossed {
-  position: relative;
-  color: $colGrey;
-}
-.crossed::after {
-  content: ' ';
-  position: absolute;
-  top: 49%;
-  left: 0px;
-  width: 100%;
-  height: 2px;
-  background: $colLightGrey;
-  animation-name: strike;
-  animation-duration: 1s;
-  animation-timing-function: linear;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
 }
 h3 {
   margin-top: 2rem;

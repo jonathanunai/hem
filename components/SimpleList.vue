@@ -1,13 +1,19 @@
 <template>
   <div class="simple-list">
-    <div class="input-wrap">
+    <div v-if="!goShopping" class="input-wrap">
       <input v-model="item" type="text" /> <icon-add @click.native="add" />
     </div>
     <ul>
       <transition-group name="bounce">
         <li v-for="line in activeList.list" :key="line.item">
           <div class="flex-row">
-            <span :class="line.state">
+            <img
+              v-if="line.user && line.user.picture"
+              :src="line.user.picture"
+              class="itemUserPic"
+            />
+
+            <span :class="line.state" @click="crossout(line)">
               {{ line.item }}
             </span>
           </div>
@@ -29,12 +35,21 @@ export default {
     }
   },
   computed: {
-    ...mapState(['loading', 'activeList']),
+    ...mapState(['loading', 'activeList', 'goShopping']),
   },
   methods: {
     add() {
-      if (this.item) this.$store.dispatch('ADD_OTHER_ITEM', { item: this.item })
+      if (this.item)
+        this.$store.dispatch('ADD_OTHER_ITEM', {
+          item: this.item,
+          state: 'order',
+          quantity: 1,
+          user: this.$auth.user,
+        })
       this.item = ''
+    },
+    crossout(item) {
+      this.$store.dispatch('CROSSOUT', item)
     },
     deleteItem(item) {
       this.$store.dispatch('DELETE_OTHER_ITEM', item)
@@ -56,6 +71,7 @@ export default {
     span {
       cursor: pointer;
       text-align: left;
+      padding-left: 6px;
       span {
         color: $colGold3;
       }
