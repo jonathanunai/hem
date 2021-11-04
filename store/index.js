@@ -20,6 +20,17 @@ const sortList = (state) => {
     })
   }
 }
+const updateDB = (state, data) => {
+  if (state.activeList.slug === 'ShoppingList') {
+    updateDoc(data, {
+      shoppingList: state.shoppingList,
+    })
+  } else {
+    updateDoc(data, {
+      otherLists: state.otherLists,
+    })
+  }
+}
 
 export const state = () => ({
   team: null,
@@ -130,10 +141,14 @@ export const mutations = {
       )
     }
   },
-  clearList(state) {
+  clearList(state, cleanMode = false) {
     if (state.activeList.slug === 'ShoppingList') {
       state.shoppingList = state.shoppingList.map((el) => {
-        return { ...el, state: 'inactive', quantity: 1 }
+        return cleanMode
+          ? el.state === 'crossed'
+            ? { ...el, state: 'inactive', quantity: 1 }
+            : el
+          : { ...el, state: 'inactive', quantity: 1 }
       })
     } else {
       state.otherLists[state.activeList.slug].list = []
@@ -264,15 +279,7 @@ export const actions = {
   async CROSSOUT({ commit }, item) {
     commit('changeState', { item: item.item, state: 'toggle' })
     const data = doc(db, this.state.team, 'data')
-    if (this.state.activeList.slug === 'ShoppingList') {
-      await updateDoc(data, {
-        shoppingList: this.state.shoppingList,
-      })
-    } else {
-      await updateDoc(data, {
-        otherLists: this.state.otherLists,
-      })
-    }
+    await updateDB(this.state, data)
   },
   async CHANGE_QUANTITY({ commit }, item) {
     commit('changeQuantity', item)
@@ -309,6 +316,11 @@ export const actions = {
     await updateDoc(data, {
       otherLists: this.state.otherLists,
     })
+  },
+  CLEAN_LIST({ commit }) {
+    commit('clearList', true)
+    const data = doc(db, this.state.team, 'data')
+    updateDB(this.state, data)
   },
   SWITCH_TO_LIST({ commit }, list) {
     commit('switchToList', list)

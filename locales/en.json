@@ -16,7 +16,8 @@
   "MyAccount": "My account",
 
 
-  "ClearList": "Clear list",
+  "ClearList": "Erase list",
+  "CleanList": "Clean list",
   "ClearShoppingList": "Clear shopping list",
   "GoShopping": "Go shopping",
   "StopShopping": "Stop shopping",

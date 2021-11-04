@@ -38,6 +38,7 @@
                 : $t('StartShoppingList')
             }}
           </h3>
+          <icon-delete v-if="!isShoppingList"/>
         </div>
         <transition mode="out-in" name="zoom">
           <shopping-list
@@ -190,17 +191,21 @@ body.app-page {
     flex-flow: column;
     flex-direction: column;
     min-height: 100vh;
+    max-height: 100vh;
     height: 100%;
     align-items: center;
     overflow: hidden;
+    touch-action: pan-y !important;
   }
   .page-inner {
     flex: 1 1 auto;
     padding: 2rem 1rem;
-    padding-bottom: 46px;
+    padding-bottom: 50px;
     width: 90%;
     max-height: 100%;
-        overflow: hidden;
+        overflow-y: scroll;
+        touch-action: pan-y !important;
+
 
   }
   @media (min-width: 768px) {

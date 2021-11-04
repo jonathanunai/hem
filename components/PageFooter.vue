@@ -1,8 +1,9 @@
 <template>
   <footer>
-    <btn @click.native="clearList">{{ $t('ClearList') }}</btn>
+        <btn @click.native="cleanList">{{ $t('CleanList') }}</btn>
+
     <p>by<br />Unai.me</p>
-    <btn @click.native="goShopping">{{ $t('GoShopping') }}</btn>
+        <btn @click.native="clearList">{{ $t('ClearList') }}</btn>
   </footer>
 </template>
 <script>
@@ -13,6 +14,9 @@ export default {
     },
     clearList() {
       this.$nuxt.$emit('toClearList')
+    },
+    cleanList() {
+      this.$store.dispatch('CLEAN_LIST')
     },
   },
 }
@@ -25,7 +29,7 @@ footer {
   bottom: 0px;
   padding: 0.4rem;
     margin: 0rem;
-  color: $colGrey;
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: space-evenly;

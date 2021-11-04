@@ -15,7 +15,8 @@
   "NoCode": "No, no tengo código",
   "MyAccount": "Mi cuenta",
 
-  "ClearList": "Borrar lista",
+  "CleanList": "Limpiar lista",
+  "ClearList": "Vaciar lista",
   "ClearShoppingList": "Borrar la lista de la compra",
   "GoShopping": "De compras",
   "StopShopping": "Fin de la compra",
