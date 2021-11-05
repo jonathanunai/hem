@@ -11,7 +11,6 @@
     </vue-simple-suggest>
 
     <icon-add role="button" @click.native="add" />
-
   </div>
 </template>
 <script>
@@ -45,7 +44,10 @@ export default {
             item: this.item,
             state: 'order',
             quantity: 1,
-            user: this.$auth.user,
+            user: {
+              picture: this.$auth.user.picture,
+              name: this.$auth.user.name,
+            },
           })
           .then(() => (this.item = ''))
     },

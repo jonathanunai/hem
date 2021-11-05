@@ -112,7 +112,10 @@ export const mutations = {
     const index = find(state, payload)
     if (index !== -1) {
       state.shoppingList[index].state = 'order'
-      state.shoppingList[index].user = this.$auth.user
+      state.shoppingList[index].user = {
+        picture: this.$auth.user.picture,
+        name: this.$auth.user.name,
+      }
     } else {
       state.shoppingList.push(payload)
       sortList(state)
@@ -129,7 +132,10 @@ export const mutations = {
       this._vm.$set(
         state.otherLists[state.activeList.slug].list[index],
         'user',
-        this.$auth.user
+        {
+          picture: this.$auth.user.picture,
+          name: this.$auth.user.name,
+        }
       )
 
       // state.otherLists[state.activeList.slug].list[index].state = 'order'
