@@ -20,6 +20,8 @@
   justify-content: center;
   align-items: center;
   background: $colDarkGrey;
+  position: fixed;
+  z-index: 102;
 }
 
 .wave {
